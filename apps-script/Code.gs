@@ -1,7 +1,7 @@
 // Like Minds founding members: receives sign-ups from likeminds.ae and appends them to the sheet.
 
 const SHEET_ID = "1bQsjYem4lvSTU1v7ItTRz1ttrLvWeQKJRwKgQO3eCFI";
-const COLUMNS = ["submitted_at", "name", "email", "city", "craft", "instagram", "linkedin", "work", "consent", "founding_member", "source"];
+const COLUMNS = ["submitted_at", "first_name", "last_name", "email", "city", "roles", "instagram", "linkedin", "work", "consent", "founding_member", "source"];
 
 // stop anything typed into the form running as a spreadsheet formula
 function safe(v) {
