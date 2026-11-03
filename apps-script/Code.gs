@@ -1,20 +1,27 @@
 // Like Minds founding members: receives sign-ups from likeminds.ae and appends them to the sheet.
-// Deploy: Apps Script editor > Deploy > New deployment > Web app > Execute as: Me, Who has access: Anyone.
-// Paste the resulting /exec URL into FORM_ENDPOINT on the site.
 
 const SHEET_ID = "1bQsjYem4lvSTU1v7ItTRz1ttrLvWeQKJRwKgQO3eCFI";
-const COLUMNS = ["submitted_at", "name", "email", "city", "craft", "consent", "founding_member", "source"];
+const COLUMNS = ["submitted_at", "name", "email", "city", "craft", "instagram", "linkedin", "work", "consent", "founding_member", "source"];
+
+// stop anything typed into the form running as a spreadsheet formula
+function safe(v) {
+  const s = v == null ? "" : String(v).slice(0, 500);
+  return /^[=+\-@]/.test(s) ? "'" + s : s;
+}
 
 function doPost(e) {
   try {
     const data = JSON.parse(e.postData.contents || "{}");
+    if (!data.email || data.website) return out({ ok: false });
     const sheet = SpreadsheetApp.openById(SHEET_ID).getSheets()[0];
-    sheet.appendRow(COLUMNS.map(k => data[k] == null ? "" : String(data[k])));
-    return ContentService.createTextOutput(JSON.stringify({ ok: true })).setMimeType(ContentService.MimeType.JSON);
+    sheet.appendRow(COLUMNS.map(k => safe(data[k])));
+    return out({ ok: true });
   } catch (err) {
-    return ContentService.createTextOutput(JSON.stringify({ ok: false, error: String(err) })).setMimeType(ContentService.MimeType.JSON);
+    return out({ ok: false, error: String(err) });
   }
 }
+
+function out(o) { return ContentService.createTextOutput(JSON.stringify(o)).setMimeType(ContentService.MimeType.JSON); }
 
 function doGet() {
   return ContentService.createTextOutput("Like Minds sign-up endpoint is live.");

@@ -3,21 +3,20 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta property="og:title" content="Like Minds. Coming soon.">
+<meta property="og:description" content="The home for our creative community. Register for the waiting list.">
+<meta property="og:image" content="https://likeminds.ae/assets/og.jpg">
+<meta name="theme-color" content="#262422">
+<link rel="icon" href="assets/logo-small.png">
 <title>Like Minds</title>
 <meta name="description" content="Like Minds is getting a home. Founding members get in first.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,500&display=swap">
-</head>
-<body>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,400;6..72,500&family=Permanent+Marker&family=VT323&display=swap">
 <style>
-  /* Layout: a single magazine spread. Image, one line, the form. Nothing explained. */
-  @font-face {
-    font-family: "New Spirit";
-    src: url("assets/NewSpirit-SemiBold.woff2") format("woff2");
-    font-weight: 600;
-    font-display: swap;
-  }
+  /* Layout: one sticky stage scrubbed by scroll. Shelf, tilt to the deck, push into the screen, static, playback, black. Then the list on paper. */
+  @font-face { font-family: "Mr Dafoe"; src: url("assets/MrDafoe.woff2") format("woff2"); font-display: swap; }
+  @font-face { font-family: "New Spirit"; src: url("assets/NewSpirit-SemiBold.woff2") format("woff2"); font-weight: 600; font-display: swap; }
   :root {
     --paper: #f7f6f2;
     --paper-raised: #efede6;
@@ -26,116 +25,166 @@
     --rule: #d9d7d0;
     --red: #d84b4b;
     --red-text: #b23a3a;
-    --teal: #86a4a0;
     --cream: #eeefd7;
     --on-red: #111110;
     --focus: #111110;
-    --logo-url: url("assets/logo-uae.png");
-    --logo-small-url: url("assets/logo-small.png");
+    --black: #050505;
+    --osd: #e9f2ea;
     --display: "Inter Tight", Arial, sans-serif;
     --serif: "Newsreader", Georgia, serif;
-    --brand: "New Spirit", Georgia, serif;
+    --marker: "Permanent Marker", "Comic Sans MS", sans-serif;
+    --vcr: "VT323", "Courier New", monospace;
   }
   @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) {
-      --paper: #262422;
-      --paper-raised: #2f2d2a;
-      --ink: #eeefd7;
-      --ink-muted: #a9a69c;
-      --rule: #33312d;
-      --red-text: #e8706a;
-      --focus: #eeefd7;
-      --logo-url: url("assets/logo-light-uae.png");
-      --logo-small-url: url("assets/logo-light-small.png");
-      color-scheme: dark;
-    }
+    :root:not([data-theme="light"]) { --paper: #262422; --paper-raised: #2f2d2a; --ink: #eeefd7; --ink-muted: #a9a69c; --rule: #33312d; --red-text: #e8706a; --focus: #eeefd7; color-scheme: dark; }
   }
-  :root[data-theme="dark"] {
-    --paper: #262422;
-    --paper-raised: #2f2d2a;
-    --ink: #eeefd7;
-    --ink-muted: #a9a69c;
-    --rule: #33312d;
-    --red-text: #e8706a;
-    --focus: #eeefd7;
-    --logo-url: url("assets/logo-light-uae.png");
-    --logo-small-url: url("assets/logo-light-small.png");
-    color-scheme: dark;
-  }
+  :root[data-theme="dark"] { --paper: #262422; --paper-raised: #2f2d2a; --ink: #eeefd7; --ink-muted: #a9a69c; --rule: #33312d; --red-text: #e8706a; --focus: #eeefd7; color-scheme: dark; }
 
   * { box-sizing: border-box; }
   [hidden] { display: none !important; }
-  html { scroll-behavior: smooth; }
-  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
-  body {
-    margin: 0;
-    background: var(--paper);
-    color: var(--ink);
-    font-family: var(--serif);
-    font-size: 18px;
-    line-height: 1.5;
-    -webkit-font-smoothing: antialiased;
-  }
-  body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--paper); }
-  .wrap {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding-left: max(16px, env(safe-area-inset-left, 0px));
-    padding-right: max(16px, env(safe-area-inset-right, 0px));
-  }
+  body { margin: 0; background: var(--black); color: var(--ink); font-family: var(--serif); font-size: 18px; line-height: 1.5; -webkit-font-smoothing: antialiased; }
 
-  .label { font-family: var(--display); font-size: 13px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--red-text); margin: 0; }
-  .label.muted { color: var(--ink-muted); }
+  /* ---------- The film ---------- */
+  .film { position: relative; height: 900vh; background: var(--black); }
+  .stage { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; background: var(--black); }
+  .layer { position: absolute; inset: 0; will-change: transform, opacity; }
+  .layer > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; max-width: none; }
+
+  /* Beats 1 and 2: the bookcase of every Like Minds poster, panned down to the deck and TV */
+  .room { background: #3a2a1c; }
+  .wall { position: absolute; left: 0; top: 0; transform-origin: 0 0; will-change: transform; background: #4a3a2c; }
+  /* the wall either side of the bookcase continues the photo's own wall upward, so there is no seam */
+  .wall::before { content: ""; position: absolute; left: 0; right: 0; top: 0; bottom: var(--tvH, 0px);
+    background: linear-gradient(180deg, rgba(20,14,9,.55), rgba(20,14,9,0) 70%), url("assets/wallstrip.png") 0 0 / 100% 100% no-repeat; }
+  .case { position: absolute; top: 0; }
+  .case .side { position: absolute; top: 0; bottom: 0; background: url("assets/side.jpg") repeat-y center / 100% auto; box-shadow: inset -2px 0 4px rgba(0,0,0,.35); z-index: 2; }
+  .case .side.l { left: 0; } .case .side.r { right: 0; }
+  .case .cap { position: absolute; left: 0; right: 0; top: 0; background: url("assets/plank.jpg") repeat-x left / auto 100%; box-shadow: 0 6px 10px rgba(0,0,0,.45); z-index: 3; }
+  .rows { position: absolute; }
+  .row { position: absolute; left: 0; right: 0; background: linear-gradient(180deg, #1c120b 0%, #2c1d12 55%, #3a2717 100%); }
+  .row .board { position: absolute; left: 0; right: 0; bottom: 0; background: url("assets/plank.jpg") repeat-x left / auto 100%; box-shadow: 0 5px 9px rgba(0,0,0,.5); z-index: 2; }
+  .row .yr { position: absolute; z-index: 3; bottom: 0; transform: translateY(32%) rotate(-2deg); background: #e9e3c9; color: #1a1a1a; font-family: var(--marker); line-height: 1; padding: .25em .5em .2em; box-shadow: 0 1px 2px rgba(0,0,0,.4); opacity: .95; }
+  .tape { position: absolute; bottom: 0; padding: 0; border: 0; background: #111; cursor: pointer; transform-origin: 50% 100%; transition: transform .22s ease, filter .22s ease; filter: brightness(.86) saturate(.92); box-shadow: 2px 0 3px rgba(0,0,0,.55), -1px 0 2px rgba(0,0,0,.35); }
+  .tape img { display: block; width: 100%; height: 100%; object-fit: fill; }
+  .tape .no { position: absolute; left: 12%; right: 12%; bottom: 3%; background: #eeefd7; color: #111; font-family: var(--vcr); font-style: normal; line-height: 1.1; text-align: center; border-top: 2px solid #d84b4b; box-shadow: 0 1px 1px rgba(0,0,0,.4); }
+  .tape:hover, .tape:focus-visible { transform: translateY(-7%); filter: brightness(1.05) saturate(1); z-index: 4; }
+  .tape:focus-visible { outline: 2px solid #eeefd7; outline-offset: 3px; }
+  .slot { position: absolute; bottom: 0; background: linear-gradient(90deg, #0b0705, #160e09 50%, #0b0705); box-shadow: inset 0 8px 16px rgba(0,0,0,.8); }
+  .slot b { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%) rotate(-90deg); transform-origin: center; white-space: nowrap; font-family: var(--vcr); color: rgba(238,239,215,.35); letter-spacing: .1em; }
+  .tvpart { position: absolute; left: 0; background-image: url("assets/room-notape.jpg"); background-repeat: no-repeat; }
+  .vtape { position: absolute; will-change: transform; }
+  .vtape img { position: absolute; left: 0; width: 100%; max-width: none; display: block; will-change: transform, filter, clip-path; }
+  .vt { top: 0; height: 26.8%; transform-origin: 50% 0%; }
+  .vf { top: 26.8%; height: 73.2%; transform-origin: 50% 0%; }
+  .vslot { position: absolute; background: linear-gradient(#020202, #0c0b0b 60%, #050505); box-shadow: inset 0 3px 4px rgba(0,0,0,.9); }
+  .vflap { position: absolute; background-repeat: no-repeat; transform-origin: 50% 0%; transform: perspective(300px) rotateX(-88deg); opacity: 0; }
+  .vcase, .cshadow { position: absolute; max-width: none; }
+  .vfd { position: absolute; display: flex; align-items: center; justify-content: center; font-family: var(--vcr); color: #7dffc4; letter-spacing: .08em; opacity: 0; text-shadow: 0 0 6px rgba(80,255,180,.8), 0 0 14px rgba(80,255,180,.45); }
+  .vfd.on { animation: vfd 2.4s steps(1) infinite; }
+  @keyframes vfd { 0%, 100% { opacity: 1 } 47% { opacity: 1 } 48% { opacity: .55 } 50% { opacity: 1 } }
+  .tvscr { position: absolute; overflow: hidden; opacity: 0; background: #0a0a0a; border-radius: 7% / 9%; box-shadow: inset 0 0 30px rgba(0,0,0,.9); }
+  .tvscr canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+  .tvscr::after { content: ""; position: absolute; inset: 0; z-index: 2; background: repeating-linear-gradient(0deg, rgba(0,0,0,.3) 0 1px, transparent 1px 3px), radial-gradient(ellipse at center, transparent 50%, rgba(0,0,0,.7) 100%); }
+  .tvflash { position: absolute; z-index: 4; left: 0; right: 0; top: 50%; height: 3px; margin-top: -1.5px; background: #fff; box-shadow: 0 0 18px 5px rgba(255,255,255,.8); opacity: 0; transform: scaleX(0); z-index: 2; }
+  .tvpart::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 6%; pointer-events: none; background: linear-gradient(180deg, rgba(0,0,0,.18), rgba(0,0,0,0)); }
+  @media (prefers-reduced-motion: reduce) { .tape { transition: none; } }
+
+  /* Pull a tape: the viewer */
+  .box { position: fixed; inset: 0; z-index: 50; background: rgba(6,5,4,.92); display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 8px;
+    padding-top: calc(16px + env(safe-area-inset-top, 0px)); padding-bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+    padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+  .box figure { margin: 0; display: flex; flex-direction: column; align-items: center; gap: 14px; min-width: 0; min-height: 0; height: 100%; justify-content: center; }
+  .box img { max-width: 100%; max-height: calc(100% - 48px); object-fit: contain; box-shadow: 0 20px 60px rgba(0,0,0,.6); }
+  .box figcaption { display: flex; gap: 14px; align-items: baseline; flex-wrap: wrap; justify-content: center; color: #eeefd7; font-family: var(--display); font-size: 15px; font-weight: 500; }
+  .box .lm, .box .when { font-family: var(--vcr); font-size: 20px; letter-spacing: .06em; color: #d84b4b; }
+  .box .when { color: rgba(238,239,215,.6); }
+  .bx { background: none; border: 1px solid rgba(238,239,215,.35); color: #eeefd7; font-family: var(--vcr); font-size: 22px; width: 52px; height: 52px; cursor: pointer; border-radius: 0; }
+  .bx:hover { background: rgba(238,239,215,.1); }
+  .bx.close { position: absolute; top: calc(14px + env(safe-area-inset-top, 0px)); right: max(14px, env(safe-area-inset-right, 0px)); }
+  @media (max-width: 640px) { .box { grid-template-columns: 1fr 1fr; grid-template-rows: 1fr auto; } .box figure { grid-column: 1 / -1; grid-row: 1; } .bx.prev { grid-row: 2; justify-self: end; } .bx.next { grid-row: 2; justify-self: start; } }
+
+  .masthead { position: absolute; left: 0; right: 0; top: 0; z-index: 6; pointer-events: none; display: flex; justify-content: space-between; align-items: flex-start; gap: 16px;
+    padding-top: calc(20px + env(safe-area-inset-top, 0px));
+    padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+  .masthead img { width: 72px; height: auto; display: block; }
+  .tag { font-family: var(--display); font-size: 12px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--cream); margin: 6px 0 0; text-shadow: 0 1px 8px rgba(0,0,0,.6); }
+  .cue { position: absolute; z-index: 6; pointer-events: none; left: 50%; bottom: calc(28px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 10px; color: var(--cream); text-shadow: 0 1px 8px rgba(0,0,0,.7); }
+  .cue span:first-child { font-family: var(--marker); font-size: 18px; letter-spacing: .02em; text-transform: none; }
+  .cue span { font-family: var(--display); font-size: 12px; font-weight: 600; letter-spacing: .3em; text-transform: uppercase; }
+  .cue i { display: block; width: 1px; height: 44px; background: var(--cream); transform-origin: top; animation: drip 1.8s ease-in-out infinite; }
+  @keyframes drip { 0% { transform: scaleY(0); opacity: 1 } 60% { transform: scaleY(1); opacity: 1 } 100% { transform: scaleY(1); opacity: 0 } }
+
+  /* Beats 3 and 4: the screen */
+  .screen, .play, .black { pointer-events: none; }
+  .screen { opacity: 0; background: var(--black); }
+  .screen canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+  .crt { position: absolute; inset: 0; pointer-events: none;
+    background:
+      repeating-linear-gradient(0deg, rgba(0,0,0,.28) 0 1px, transparent 1px 3px),
+      radial-gradient(ellipse at center, transparent 55%, rgba(0,0,0,.75) 100%); }
+  .flash { position: absolute; left: 0; right: 0; top: 50%; height: 2px; margin-top: -1px; background: #fff; box-shadow: 0 0 24px 6px rgba(255,255,255,.7); opacity: 0; transform: scaleX(0); }
+
+  .tvplay { position: absolute; inset: 0; opacity: 0; background: #07080a; z-index: 1; }
+  .tvplay .band { position: absolute; left: 0; right: 0; height: 16%; top: -20%; opacity: .5; mix-blend-mode: screen;
+    background: repeating-linear-gradient(90deg, rgba(255,255,255,0) 0 3px, rgba(255,255,255,.35) 3px 4px, rgba(255,255,255,0) 4px 9px); filter: blur(1px); animation: roll 3.2s linear infinite; }
+  @keyframes roll { to { top: 110%; } }
+  .osd { position: absolute; font-family: var(--vcr); color: var(--osd); text-shadow: calc(var(--u) * .25) 0 rgba(255,60,60,.55), calc(var(--u) * -.25) 0 rgba(60,200,255,.55); letter-spacing: .04em; line-height: 1; }
+  .osd.tl { top: 8%; left: 7%; font-size: calc(var(--u) * 7); }
+  .osd.br { bottom: 8%; right: 7%; font-size: calc(var(--u) * 5); }
+  .osd.bl { bottom: 8%; left: 7%; font-size: calc(var(--u) * 5); }
+  .title { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: calc(var(--u) * 3); }
+  .title img { width: 23%; height: auto; display: block; opacity: 0; filter: drop-shadow(calc(var(--u) * .35) 0 0 rgba(255,50,50,.55)) drop-shadow(calc(var(--u) * -.35) 0 0 rgba(50,200,255,.45)); }
+  .title img.jit { animation: jit 2.6s steps(1) infinite; }
+  @keyframes jit { 0%, 100% { transform: translate(0,0) } 31% { transform: translate(2px,0) } 32% { transform: translate(-3px,1px) } 33% { transform: translate(0,0) } 72% { transform: translate(-1px,0) } 73% { transform: translate(0,0) } }
+  .title { gap: calc(var(--u) * 1.3); padding-top: 4%; }
+  .url, .tag2, .reg { margin: 0; opacity: 0; color: var(--cream); line-height: 1.05; text-align: center; text-shadow: calc(var(--u) * .25) 0 rgba(255,60,60,.45), calc(var(--u) * -.25) 0 rgba(60,200,255,.4); }
+  .url { font-family: "Mr Dafoe", "Brush Script MT", cursive; font-size: calc(var(--u) * 8.6); letter-spacing: 0; line-height: .9; color: #fff0fa; transform: rotate(-6deg); margin: calc(var(--u) * -.6) 0 calc(var(--u) * .4); padding: 0 .15em;
+    text-shadow: 0 0 calc(var(--u)*.3) #fff, 0 0 calc(var(--u)*1) #ff4fb8, 0 0 calc(var(--u)*2.2) #ff2a9d, 0 0 calc(var(--u)*4) rgba(255,42,157,.55), calc(var(--u)*.35) calc(var(--u)*.35) 0 rgba(40,220,230,.7); }
+  .url .dot { font-weight: 400; font-size: 1.35em; color: #7dfff0; margin: 0 .04em; text-shadow: 0 0 calc(var(--u)*1) #2ee6e6, 0 0 calc(var(--u)*2) #2ee6e6; }
+  .tag2 { font-family: var(--display); font-weight: 500; font-size: calc(var(--u) * 3.3); letter-spacing: -.01em; max-width: 80%; }
+  .reg { position: absolute; left: 6%; right: 6%; top: 50%; transform: translateY(-50%); font-family: var(--vcr); font-size: calc(var(--u) * 7.6); line-height: 1; letter-spacing: .04em; text-wrap: balance; }
+  .reg .down { font-size: .8em; }
+  .reg .down { display: inline-block; color: #d84b4b; animation: blink 1.1s steps(1) infinite; }
+  @keyframes blink { 50% { opacity: 0; } }
+  .soon { font-family: var(--display); font-weight: 600; letter-spacing: -.04em; font-size: calc(var(--u) * 6.2); line-height: 1; color: var(--cream); margin: 0; opacity: 0; text-shadow: calc(var(--u) * .25) 0 rgba(255,60,60,.45), calc(var(--u) * -.25) 0 rgba(60,200,255,.4); }
+  .soon .stop { color: var(--red); }
+  /* the photo's own glass on top: lamp glint and room reflection */
+  .tvscr .reflect { position: absolute; inset: 0; width: 100%; height: 100%; max-width: none; z-index: 3; mix-blend-mode: screen; opacity: .6; pointer-events: none; }
+  .black { background: #000; opacity: 0; pointer-events: none; }
+  .chip { position: absolute; right: max(16px, env(safe-area-inset-right, 0px)); bottom: calc(16px + env(safe-area-inset-bottom, 0px)); z-index: 5; font-family: var(--display); font-size: 11px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: #111; background: #eeefd7; padding: 6px 10px; }
+
+  /* ---------- The list ---------- */
+  .after { --paper: #262422; --paper-raised: #2f2d2a; --ink: #eeefd7; --ink-muted: #a9a69c; --rule: #3a3834; --red-text: #e8706a; --focus: #eeefd7; color-scheme: dark; position: relative; background: var(--paper); color: var(--ink); }
+  .after::before { content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .07; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+  .after > * { position: relative; }
+  .l .hint { text-transform: none; letter-spacing: 0; font-weight: 400; }
+  .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+  .hint { font-family: var(--display); font-size: 13px; color: var(--ink-muted); line-height: 1.4; }
+  .handle { display: flex; align-items: stretch; border: 1px solid var(--ink); background: var(--paper-raised); }
+  .handle { align-items: center; }
+  .handle span { font-family: var(--serif); font-size: 18px; line-height: 1; padding-left: 16px; color: var(--ink-muted); }
+  .handle input { border: 0 !important; padding-left: 4px !important; }
+  .handle:focus-within { outline: 2px solid var(--focus); outline-offset: 2px; }
+  .handle input:focus-visible { outline: none; }
+  .work-h { grid-column: 1 / -1; border-top: 1px solid var(--rule); padding-top: 24px; margin-top: 8px; display: flex; flex-direction: column; gap: 6px; }
+  .work-h b { font-family: var(--display); font-size: 13px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--red-text); }
+  .wrap { max-width: 1200px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+  .label-s { font-family: var(--display); font-size: 13px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--red-text); margin: 0; }
   .stop { color: var(--red); }
-  .brand { font-family: var(--brand); font-weight: 600; }
-  h1, h2 { font-family: var(--display); font-weight: 600; letter-spacing: -0.045em; line-height: 0.92; margin: 0; text-wrap: balance; }
-  h1 { font-size: clamp(64px, 12vw, 168px); }
-  h2 { font-size: clamp(40px, 6vw, 72px); }
+  .brand { font-family: "New Spirit", Georgia, serif; font-weight: 600; }
+  h2 { font-family: var(--display); font-weight: 600; letter-spacing: -.045em; line-height: .92; margin: 0; text-wrap: balance; font-size: clamp(40px, 6vw, 72px); color: var(--ink); }
   p { margin: 0; }
-
-  /* Nav */
-  .nav { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 9; background: var(--paper); }
-  .nav .wrap { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding-block: 16px; }
-  .mark { display: block; width: 72px; aspect-ratio: 600 / 365; background: var(--logo-small-url) center / contain no-repeat; }
-  .nav .label { margin: 0; }
-  .nav a.label { text-decoration: none; }
-  .nav a.label:hover { color: var(--ink); }
-
-  /* Hero: the print, then the word */
-  .hero .wrap { padding-block: 8px 0; }
-  .hero figure { margin: 0; }
-  .hero img { display: block; width: 100%; max-width: 100%; height: auto; }
-  .word { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: end; padding-block: 48px 0; }
-  .word > * { min-width: 0; }
-  .word .line { font-family: var(--serif); font-size: clamp(22px, 2.6vw, 30px); line-height: 1.2; max-width: 20ch; text-wrap: balance; }
-  @media (max-width: 860px) { .word { grid-template-columns: 1fr; gap: 28px; padding-block: 40px 0; } }
-
-  /* The tease, on red */
-  .tease { background: var(--red); color: var(--on-red); margin-top: 96px; }
-  .tease .wrap { padding-block: 96px; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
-  .tease .wrap > * { min-width: 0; }
-  .tease h2 .stop { color: var(--cream); }
-  .tease .label { color: var(--on-red); opacity: .85; margin-bottom: 24px; }
-  .tease ul { list-style: none; margin: 0; padding: 0; font-family: var(--display); font-size: clamp(22px, 2.6vw, 32px); font-weight: 500; letter-spacing: -0.02em; line-height: 1.25; }
-  .tease li { padding-block: 14px; border-top: 1px solid rgba(17,17,16,.25); }
-  .tease li:last-child { border-bottom: 1px solid rgba(17,17,16,.25); }
-  @media (max-width: 860px) { .tease { margin-top: 64px; } .tease .wrap { grid-template-columns: 1fr; padding-block: 64px; } }
-
-  /* Form */
-  .join .wrap { padding-block: 96px; display: grid; grid-template-columns: 5fr 7fr; gap: 40px 64px; align-items: start; }
+  .join .wrap { padding-block: 112px 96px; display: grid; grid-template-columns: 5fr 7fr; gap: 40px 64px; align-items: start; }
   .join .wrap > * { min-width: 0; }
-  .join .intro { font-family: var(--serif); font-size: 22px; line-height: 1.3; margin-top: 24px; max-width: 34ch; }
-  .join .small { font-family: var(--display); font-size: 14px; color: var(--ink-muted); margin-top: 24px; max-width: 40ch; line-height: 1.45; }
-  @media (max-width: 860px) { .join .wrap { grid-template-columns: 1fr; padding-block: 64px; } }
+  .intro { font-size: 22px; line-height: 1.3; margin-top: 24px; max-width: 34ch; }
+  .small { font-family: var(--display); font-size: 14px; color: var(--ink-muted); margin-top: 24px; max-width: 40ch; line-height: 1.45; }
+  @media (max-width: 860px) { .join .wrap { grid-template-columns: 1fr; padding-block: 72px 64px; } }
   form { display: grid; grid-template-columns: 1fr 1fr; gap: 20px 24px; }
   form > * { min-width: 0; }
   .field { display: flex; flex-direction: column; gap: 8px; }
   .field.full { grid-column: 1 / -1; }
-  label.l { font-family: var(--display); font-size: 13px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; }
-  input[type="text"], input[type="email"], select {
-    font-family: var(--serif); font-size: 18px; color: var(--ink);
-    background: var(--paper-raised); border: 1px solid var(--ink); border-radius: 0; padding: 14px 16px; width: 100%; appearance: none; -webkit-appearance: none;
-  }
+  label.l { font-family: var(--display); font-size: 13px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; }
+  input[type="text"], input[type="email"], input[type="url"], select { font-family: var(--serif); font-size: 18px; color: var(--ink); background: var(--paper-raised); border: 1px solid var(--ink); border-radius: 0; padding: 14px 16px; width: 100%; appearance: none; -webkit-appearance: none; }
   select { background-image: linear-gradient(45deg, transparent 50%, var(--ink) 50%), linear-gradient(135deg, var(--ink) 50%, transparent 50%); background-position: calc(100% - 22px) 55%, calc(100% - 16px) 55%; background-size: 6px 6px; background-repeat: no-repeat; padding-right: 44px; }
   .consent { font-family: var(--display); font-size: 14px; display: flex; gap: 12px; align-items: flex-start; line-height: 1.45; color: var(--ink-muted); }
   .consent a { color: inherit; }
@@ -143,78 +192,99 @@
   .btn { display: inline-block; font-family: var(--display); font-size: 15px; font-weight: 600; letter-spacing: .02em; padding: 18px 32px; background: var(--red); color: var(--on-red); text-decoration: none; border: 0; border-radius: 0; cursor: pointer; line-height: 1; }
   .btn:hover { background: #c94343; }
   .btn:disabled { opacity: .6; cursor: default; }
-  :is(a, button, input, select):focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+  :is(a, button, input, select, summary):focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
   .actions { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
   .status { font-family: var(--display); font-size: 14px; font-weight: 500; color: var(--red-text); }
   .thanks { display: flex; flex-direction: column; gap: 20px; }
   .thanks h2 { font-size: clamp(36px, 5vw, 56px); }
   .thanks p { font-size: 20px; max-width: 36ch; }
   @media (max-width: 720px) { form { grid-template-columns: 1fr; } }
-
-  /* Privacy, folded */
   details { border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
   summary { cursor: pointer; list-style: none; padding-block: 18px; font-family: var(--display); font-size: 13px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--ink-muted); display: flex; justify-content: space-between; }
   summary::-webkit-details-marker { display: none; }
   summary::after { content: "+"; }
   details[open] summary::after { content: "–"; }
   .priv { padding-block: 8px 28px; display: grid; gap: 14px; max-width: 66ch; font-size: 17px; }
-
-  /* Footer */
-  footer .wrap { padding-block: 72px 56px; display: grid; grid-template-columns: 1fr auto; gap: 32px; align-items: end; }
+  footer .wrap { padding-block: 64px 48px; display: grid; grid-template-columns: 1fr auto; gap: 32px; align-items: end; }
   footer .wrap > * { min-width: 0; }
-  footer .mark { width: 220px; aspect-ratio: 900 / 606; background-image: var(--logo-url); }
   .foot { display: flex; flex-wrap: wrap; gap: 8px 28px; font-family: var(--display); font-size: 15px; font-weight: 500; }
   .foot a { color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--rule); }
-  .foot a:hover { border-color: var(--ink); }
   .fine { font-family: var(--display); font-size: 13px; color: var(--ink-muted); margin-top: 20px; }
+  .flogo { width: 200px; aspect-ratio: 900 / 606; background: url("assets/logo-uae.png") center / contain no-repeat; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .flogo { background-image: url("assets/logo-light-uae.png"); } }
+  :root[data-theme="dark"] .flogo { background-image: url("assets/logo-light-uae.png"); }
   @media (max-width: 720px) { footer .wrap { grid-template-columns: 1fr; align-items: start; } }
+
+  @media (prefers-reduced-motion: reduce) { .cue i, .tvplay .band, .title img.jit, .reg .down { animation: none; } }
 </style>
+</head>
+<body>
 
-<header class="nav">
-  <div class="wrap">
-    <a href="#top" class="mark" aria-label="Like Minds"></a>
-    <a class="label" href="#join">Founding members</a>
-  </div>
-</header>
+<section class="film" id="film" aria-label="Like Minds. Coming soon.">
+  <div class="stage" id="stage">
 
-<main id="top">
-  <section class="hero">
-    <div class="wrap">
-      <figure>
-        <img src="assets/hero-print.jpg" alt="A Like Minds night. A crowd talking under string lights, black and white, printed over the red L of the logo." width="1600" height="900">
-      </figure>
-      <div class="word">
-        <div>
-          <p class="label">Dubai · Opening soon</p>
-          <h1 style="margin-top:16px">scene<span class="stop">.</span></h1>
+    <div class="layer room" id="room">
+      <div class="wall" id="wall">
+        <div class="case" id="case">
+          <div class="side l"></div><div class="side r"></div><div class="cap"></div>
+          <div class="rows" id="rows"></div>
         </div>
-        <p class="line"><span class="brand">Like Minds</span> is getting a home. Doors open [month]. The people who sign up now get in first, and get in cheaper.</p>
+        <div class="tvpart" id="tvpart" role="img" aria-label="Below the bookcase, a VCR with a single tape labelled Like Minds, on top of an old TV."></div>
+        <div class="tvscr" id="tvscr"><canvas id="snow2" aria-hidden="true"></canvas>
+          <div class="tvplay" id="play">
+            <div class="band"></div>
+            <div class="osd tl">PLAY ▶</div>
+            <div class="osd bl" id="oSp">SP</div>
+            <div class="osd br" id="tc">00:00:00</div>
+            <div class="title">
+              <img src="assets/logo-light-uae.png" alt="Like Minds. UAE's creative community." id="logo">
+              <p class="url" id="tUrl">likeminds<b class="dot">.</b>ae</p>
+              <p class="tag2" id="tTag">The home for our creative community.</p>
+              <p class="soon" id="soon">Coming soon<span class="stop">.</span></p>
+              <p class="reg" id="tReg">Register for the waiting list below<br><span class="down" aria-hidden="true">▼</span></p>
+            </div>
+          </div>
+          <img class="reflect" src="assets/reflect.jpg" alt="" aria-hidden="true">
+          <i class="tvflash" id="tvflash"></i></div>
+        <div class="vfd" id="vfd" aria-hidden="true">PLAY ▶</div>
+        <img class="cshadow" id="cshadow" src="assets/case-shadow.png" alt="" aria-hidden="true">
+        <img class="vcase" id="vcase" src="assets/case.png" alt="An empty Like Minds VHS case in red and teal chevrons, sitting on the deck." >
+        <i class="vslot" id="vslot" aria-hidden="true"></i><div class="vtape" id="vtape" aria-hidden="true"><img class="vt" id="vt" src="assets/cassette-top.png" alt=""><img class="vf" id="vf" src="assets/cassette-front.png" alt=""></div><i class="vflap" id="vflap" aria-hidden="true"></i>
       </div>
-    </div>
-  </section>
-
-  <section class="tease">
-    <div class="wrap">
-      <div>
-        <p class="label">For storytellers, creatives and filmmakers</p>
-        <h2>Not a union<span class="stop">.</span> Not a network<span class="stop">.</span> A scene<span class="stop">.</span></h2>
+      <div class="masthead" id="mast">
+        <img src="assets/logo-light-small.png" alt="Like Minds">
+        <p class="tag">Dubai · Opening soon</p>
       </div>
-      <ul>
-        <li>The crew you met at the last night, found in ten seconds.</li>
-        <li>Jobs that never make it to a job board.</li>
-        <li>Work shown to people who make work.</li>
-        <li>Masterclasses announced to members first.</li>
-        <li>Four years of nights. One a month. No excuses.</li>
-      </ul>
+      <div class="cue" id="cue"><span>Every night since 2022</span><span>Scroll</span><i></i></div>
     </div>
-  </section>
 
+    <div class="layer screen" id="screen">
+      <canvas id="snow" aria-hidden="true"></canvas>
+      <div class="crt"></div>
+      <div class="flash" id="flash"></div>
+    </div>
+
+    <div class="layer black" id="black"></div>
+  </div>
+</section>
+
+<div class="box" id="box" hidden role="dialog" aria-modal="true" aria-labelledby="boxTitle">
+  <button class="bx close" id="boxClose" aria-label="Put it back">✕</button>
+  <button class="bx prev" id="boxPrev" aria-label="Previous tape">◀◀</button>
+  <figure>
+    <img id="boxImg" alt="">
+    <figcaption><span class="lm" id="boxNo"></span><span id="boxTitle"></span><span class="when" id="boxWhen"></span></figcaption>
+  </figure>
+  <button class="bx next" id="boxNext" aria-label="Next tape">▶▶</button>
+</div>
+
+<div class="after">
   <section class="join" id="join">
     <div class="wrap">
       <div>
-        <p class="label">Founding members</p>
+        <p class="label-s">Founding members</p>
         <h2 style="margin-top:16px">Get in first<span class="stop">.</span></h2>
-        <p class="intro">Four questions. Then you're on the list, with a founding member rate locked in for when the doors open.</p>
+        <p class="intro"><span class="brand">Like Minds</span> is getting a home. A few questions and a look at your work, and you're on the list, with a founding member rate locked in for when the doors open.</p>
         <p class="small">No spam. One email when doors open. One when there's a night worth coming to.</p>
       </div>
       <div>
@@ -231,6 +301,11 @@
               <option value="">Choose</option>
               <option>Director</option><option>Producer</option><option>Cinematographer / DP</option><option>Editor</option><option>Photographer</option><option>Writer</option><option>Designer / Art director</option><option>Animator / Motion</option><option>Sound / Music</option><option>Actor / Performer</option><option>Agency or brand side</option><option>Student</option><option>Something else</option>
             </select></div>
+          <div class="hp" aria-hidden="true"><label>Leave this empty <input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+          <div class="work-h"><b>Show us your work</b><span class="hint">We look at everyone's work before doors open. Your Instagram plus one link is plenty.</span></div>
+          <div class="field"><label class="l" for="instagram">Instagram</label><div class="handle"><span>@</span><input type="text" id="instagram" name="instagram" autocomplete="off" autocapitalize="none" spellcheck="false" placeholder="yourhandle" pattern="@?[A-Za-z0-9._]{1,30}" required></div></div>
+          <div class="field"><label class="l" for="linkedin">LinkedIn <span class="hint">· optional</span></label><input type="text" id="linkedin" autocapitalize="none" spellcheck="false" name="linkedin" inputmode="url" placeholder="linkedin.com/in/you"></div>
+          <div class="field full"><label class="l" for="work">Portfolio, showreel or website <span class="hint">· optional</span></label><input type="text" id="work" autocapitalize="none" spellcheck="false" name="work" inputmode="url" placeholder="vimeo.com/you, behance.net/you, yoursite.com"></div>
           <div class="field full"><label class="consent"><input type="checkbox" id="consent" name="consent" required><span>Keep me posted about the launch and Like Minds nights. I've read the <a href="#privacy">privacy note</a> and can leave the list any time.</span></label></div>
           <div class="field full actions"><button class="btn" type="submit" id="submit">Count me in</button><span class="status" id="status" aria-live="polite"></span></div>
         </form>
@@ -249,7 +324,7 @@
         <summary>Privacy note</summary>
         <div class="priv">
           <p><strong>Who holds it.</strong> Like Minds Global FZ-LLC, Dubai, UAE. Write to hello@likeminds.ae about anything here.</p>
-          <p><strong>What we collect.</strong> Only what you type above: name, email, city and what you do.</p>
+          <p><strong>What we collect.</strong> Only what you type above: name, email, city, what you do, your Instagram handle and any links to your work. We only look at work you've made public.</p>
           <p><strong>What it's for.</strong> Telling you when doors open, inviting you to nights, and building the founding member list at launch. Nothing else.</p>
           <p><strong>Who sees it.</strong> The Like Minds team. Stored in a private spreadsheet. Never sold, rented, or passed to sponsors or brands.</p>
           <p><strong>Leaving.</strong> Reply to any email with "remove me" and your row is deleted. Ask what we hold on you at any time.</p>
@@ -257,67 +332,271 @@
       </details>
     </div>
   </section>
-</main>
 
-<footer>
-  <div class="wrap">
-    <div>
-      <div class="foot">
-        <a href="https://instagram.com/likemindsuae" target="_blank" rel="noopener">Instagram</a>
-        <a href="#join">Founding members</a>
-        <span style="font-family:var(--display)">hello@likeminds.ae</span>
+  <footer>
+    <div class="wrap">
+      <div>
+        <div class="foot">
+          <a href="https://instagram.com/likemindsuae" target="_blank" rel="noopener">Instagram</a>
+          <a href="#join">Founding members</a>
+          <span>hello@likeminds.ae</span>
+        </div>
+        <p class="fine">Like Minds Global FZ-LLC · Dubai, UAE · likeminds.ae</p>
       </div>
-      <p class="fine">Like Minds Global FZ-LLC · Dubai, UAE · likeminds.ae</p>
+      <a href="#film" class="flogo" aria-label="Back to the top"></a>
     </div>
-    <a href="#top" class="mark" aria-label="Back to top"></a>
-  </div>
-</footer>
+  </footer>
+</div>
 
 <script>
-  // Where sign-ups go. Paste the Apps Script /exec URL (or a Formspree endpoint). Empty = preview mode, nothing stored.
-  const FORM_ENDPOINT = "";
+(() => {
+  const $ = id => document.getElementById(id);
+  const film = $("film"), room = $("room"), wall = $("wall"), caseEl = $("case"), rows = $("rows"), tvpart = $("tvpart"), mast = $("mast"), screen = $("screen"), play = $("play"), black = $("black");
+  const cue = $("cue"), flash = $("flash");
+  const logo = $("logo"), soon = $("soon"), tc = $("tc"), snow = $("snow");
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  const form = document.getElementById("signup");
-  const status = document.getElementById("status");
-  const thanks = document.getElementById("thanks");
-  const submit = document.getElementById("submit");
+  // Every Like Minds poster, oldest first. Sleeves and viewing copies live in assets/tapes.
+  const TAPES = [{"i":0,"label":"OCT 2022","title":"The first invite","year":"2022","style":"black","w":1.006},{"i":1,"label":"APR 2023","title":"Like Minds","year":"2023","style":"black","w":0.986},{"i":2,"label":"APR 2023","title":"Top five competition","year":"2023","style":"black","w":0.983},{"i":3,"label":"MAY 2023","title":"Like Minds","year":"2023","style":"black","w":0.954},{"i":4,"label":"MAY 2023","title":"Elevator pitch","year":"2023","style":"sleeve","w":0.967},{"i":5,"label":"AUG 2023","title":"Like Minds","year":"2023","style":"sleeve","w":0.92},{"i":6,"label":"SEP 2023","title":"Studio One Hotel","year":"2023","style":"sleeve","w":0.943},{"i":7,"label":"JAN 2024","title":"We're back","year":"2024","style":"sleeve","w":0.966},{"i":8,"label":"MAR 2024","title":"Like Minds","year":"2024","style":"black","w":0.969},{"i":9,"label":"APR 2024","title":"Iftar and panel","year":"2024","style":"black","w":0.93},{"i":10,"label":"APR 2024","title":"Show and tell","year":"2024","style":"sleeve","w":0.94},{"i":11,"label":"MAY 2024","title":"Larte Club","year":"2024","style":"sleeve","w":0.963},{"i":12,"label":"MAY 2024","title":"Movie night: The Fall","year":"2024","style":"sleeve","w":1.068},{"i":13,"label":"MAY 2024","title":"Movie night roulette","year":"2024","style":"sleeve","w":1.076},{"i":14,"label":"JUN 2024","title":"Larte Club","year":"2024","style":"sleeve","w":0.975},{"i":15,"label":"JUL 2024","title":"New location: SOON","year":"2024","style":"sleeve","w":1.087},{"i":16,"label":"AUG 2024","title":"SOON, JLT","year":"2024","style":"sleeve","w":1.079},{"i":17,"label":"AUG 2024","title":"The Breakfast Club","year":"2024","style":"sleeve","w":0.927},{"i":18,"label":"SEP 2024","title":"SOON, JLT","year":"2024","style":"sleeve","w":0.987},{"i":19,"label":"SEP 2024","title":"The Breakfast Club","year":"2024","style":"sleeve","w":1.024},{"i":20,"label":"OCT 2024","title":"SOON, JLT","year":"2024","style":"sleeve","w":1.022},{"i":21,"label":"NOV 2024","title":"New location: MOB","year":"2024","style":"black","w":1.004},{"i":22,"label":"DEC 2024","title":"Can you hear me?","year":"2024","style":"sleeve","w":1.019},{"i":23,"label":"FEB 2025","title":"With a ghost of a host","year":"2025","style":"sleeve","w":0.931},{"i":24,"label":"APR 2025","title":"Community showreel","year":"2025","style":"black","w":0.971},{"i":25,"label":"APR 2025","title":"Summer is here","year":"2025","style":"sleeve","w":0.992},{"i":26,"label":"MAY 2025","title":"New venue: The Lighthouse","year":"2025","style":"sleeve","w":0.974},{"i":27,"label":"MAY 2025","title":"Abu Dhabi, CineMAS","year":"2025","style":"sleeve","w":1.006},{"i":28,"label":"MAY 2025","title":"Please","year":"2025","style":"sleeve","w":1.065},{"i":29,"label":"JUN 2025","title":"Portfolio review","year":"2025","style":"black","w":1.11},{"i":30,"label":"JUL 2025","title":"Share your work","year":"2025","style":"sleeve","w":0.94},{"i":31,"label":"JUL 2025","title":"Abu Dhabi, Yas Bay","year":"2025","style":"black","w":0.922},{"i":32,"label":"AUG 2025","title":"Clients","year":"2025","style":"sleeve","w":0.949},{"i":33,"label":"SEP 2025","title":"Round table chat","year":"2025","style":"sleeve","w":1.108},{"i":34,"label":"SEP 2025","title":"Producers wanted","year":"2025","style":"sleeve","w":0.989},{"i":35,"label":"OCT 2025","title":"Share your work","year":"2025","style":"sleeve","w":1.001},{"i":36,"label":"NOV 2025","title":"Remember, remember","year":"2025","style":"sleeve","w":0.955},{"i":37,"label":"DEC 2025","title":"Christmas jumpers","year":"2025","style":"sleeve","w":0.974},{"i":38,"label":"JAN 2026","title":"What's next?","year":"2026","style":"sleeve","w":1.101},{"i":39,"label":"APR 2026","title":"Cinema Club","year":"2026","style":"sleeve","w":1.024},{"i":40,"label":"MAY 2026","title":"Good chat is universal","year":"2026","style":"black","w":1.035},{"i":41,"label":"JUN 2026","title":"Sellable stories","year":"2026","style":"sleeve","w":1.081},{"i":42,"label":"JUN 2026","title":"Eid Mubarak","year":"2026","style":"sleeve","w":1.033},{"i":43,"label":"JUN 2026","title":"The Death of Robin Hood","year":"2026","style":"sleeve","w":0.981},{"i":44,"label":"JUL 2026","title":"The Match","year":"2026","style":"sleeve","w":1.108},{"i":45,"label":"JUL 2026","title":"Panels","year":"2026","style":"black","w":0.985},{"i":46,"label":"AUG 2026","title":"Creative collectives","year":"2026","style":"black","w":0.969},{"i":47,"label":"SEP 2026","title":"CCO panel","year":"2026","style":"black","w":1.072},{"i":48,"label":"OCT 2026","title":"This is not a poster","year":"2026","style":"sleeve","w":0.95},{"i":49,"label":"OCT 2026","title":"Content creators wanted","year":"2026","style":"sleeve","w":1.018},{"i":50,"label":"OCT 2026","title":"Like Minds","year":"2026","style":"black","w":1.008}];
 
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    status.textContent = "";
-    if (!form.checkValidity()) {
-      status.textContent = "All four, and the tick.";
-      form.querySelector(":invalid")?.focus();
-      return;
+  // Room photo geometry (natural pixels). The built bookcase sits on the photo's bottom shelf at CUT.
+  const IMG = { door: [343, 961, 538, 988], case: [333, 889, 545, 953], shadow: [319, 936, 559, 966], tape: [369, 960, 513, 988], vfd: [362, 999, 516, 1019], slotY: 962, w: 864, h: 1536, cut: 888, caseX0: 97, caseX1: 790, inX0: 116, inX1: 771, screen: [243, 1093, 638, 1365], frameY: 1120 };
+
+  const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
+  const ease = t => t < .5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
+  const seg = (p, a, b) => ease(clamp((p - a) / (b - a)));
+  const lerp = (a, b, t) => a + (b - a) * t;
+
+  let W = 0, H = 0, G = null, G2 = null, built = "";
+  const vtape = $("vtape"), vfd = $("vfd"), tvscr = $("tvscr"), tvflash = $("tvflash"), snow2 = $("snow2");
+  function build(s) {
+    const IW = (IMG.inX1 - IMG.inX0) * s;
+    // Spines out, packed like a real shelf. Phones get bigger spines relative to the shelf.
+    const perRow = W < 700 ? 11 : W < 1100 ? 17 : 21;
+    const sw = (IW - 8) / perRow, th = sw * 7;
+    const board = Math.max(9, 15 * s), rowH = th + board + Math.max(16, th * 0.08);
+    const pad = Math.max(3, sw * .12);
+    // pack tapes into rows by width
+    const items = TAPES.map((t, k) => ({ t, k, w: sw * t.w })).concat([{ gap: true, w: sw * 1.05 }]);
+    const shelves = []; let cur = [], used = pad;
+    for (const it of items) { if (used + it.w > IW - pad && cur.length) { shelves.push(cur); cur = []; used = pad; } cur.push(it); used += it.w + 1; }
+    shelves.push(cur);
+    // never leave the empty slot alone on its own shelf: squeeze it onto the last full one
+    if (shelves.length > 1 && shelves[shelves.length - 1].length === 1) {
+      const g = shelves.pop()[0], last = shelves[shelves.length - 1];
+      last.push(g);
+      const tot = last.reduce((a, it) => a + it.w + 1, pad * 2);
+      if (tot > IW) { const f = (IW - pad * 2 - last.length) / (tot - pad * 2 - last.length); last.forEach(it => it.w *= f); }
     }
-    const data = Object.fromEntries(new FormData(form).entries());
-    data.consent = "yes";
-    data.founding_member = "yes";
-    data.source = "likeminds.ae holding page";
-    data.submitted_at = new Date().toISOString();
+    const key = [Math.round(sw * 10), shelves.length].join("|");
+    const capH = board * 1.2, shelvesH = capH + shelves.length * rowH;
+    if (key !== built) {
+      built = key; rows.innerHTML = "";
+      shelves.forEach((sh, r) => {
+        const row = document.createElement("div"); row.className = "row";
+        row.style.top = (r * rowH) + "px"; row.style.height = rowH + "px";
+        let x = pad; const years = new Set();
+        for (const it of sh) {
+          const h = it.gap ? th : th * (0.97 + ((it.k * 37) % 7) / 200);
+          if (it.gap) {
+            const sl = document.createElement("div"); sl.className = "slot";
+            Object.assign(sl.style, { left: x + "px", bottom: board + "px", width: it.w + "px", height: h + "px" });
+            sl.innerHTML = `<b style="font-size:${Math.max(9, sw * .26)}px">LM ${String(TAPES.length + 1).padStart(3, "0")} · NEXT</b>`;
+            row.appendChild(sl);
+          } else {
+            const t = it.t; years.add(t.year);
+            const b = document.createElement("button"); b.className = "tape"; b.dataset.k = it.k;
+            Object.assign(b.style, { left: x + "px", bottom: board + "px", width: it.w + "px", height: h + "px" });
+            b.setAttribute("aria-label", `LM ${String(it.k + 1).padStart(3, "0")}, ${t.title}, ${t.label}`);
+            b.innerHTML = `<img src="assets/tapes/s${String(t.i).padStart(2, "0")}.jpg" alt="" loading="lazy" decoding="async"><i class="no" style="font-size:${Math.max(7, sw * .2)}px">${String(it.k + 1).padStart(3, "0")}</i>`;
+            row.appendChild(b);
+          }
+          x += it.w + 1;
+        }
+        const bd = document.createElement("div"); bd.className = "board"; bd.style.height = board + "px"; row.appendChild(bd);
+        const ys = [...years].sort();
+        if (false) {
+          const yr = document.createElement("span"); yr.className = "yr";
+          yr.textContent = ys.length > 1 ? `${ys[0]}–${ys[ys.length - 1].slice(2)}` : ys[0];
+          yr.style.fontSize = Math.max(11, board * 1.05) + "px"; yr.style.left = (pad + (r % 2 ? IW * .6 : IW * .08)) + "px";
+          row.appendChild(yr);
+        }
+        rows.appendChild(row);
+      });
+    }
+    return { shelvesH, capH };
+  }
 
+  function layout() {
+    W = innerWidth; H = document.getElementById("stage").clientHeight;
+    // Laptops fill the width with the whole wall; phones fill it with the bookcase.
+    const s = W >= 900 ? W / IMG.w : W / (IMG.caseX1 - IMG.caseX0 + 16);
+    const { shelvesH, capH } = build(s);
+    const wallW = IMG.w * s, X = (W - wallW) / 2;
+    const tvH = (IMG.h - IMG.cut) * s, wallH = shelvesH + tvH;
+    Object.assign(wall.style, { width: wallW + "px", height: wallH + "px" }); wall.style.setProperty("--tvH", tvH + "px");
+    Object.assign(caseEl.style, { left: IMG.caseX0 * s + "px", width: (IMG.caseX1 - IMG.caseX0) * s + "px", height: shelvesH + "px" });
+    caseEl.querySelectorAll(".side").forEach(e => e.style.width = (IMG.inX0 - IMG.caseX0) * s + "px");
+    caseEl.querySelector(".cap").style.height = capH + "px";
+    Object.assign(rows.style, { left: (IMG.inX0 - IMG.caseX0) * s + "px", right: (IMG.caseX1 - IMG.inX1) * s + "px", top: capH + "px", height: (shelvesH - capH) + "px" });
+    Object.assign(tvpart.style, { top: shelvesH + "px", width: wallW + "px", height: tvH + "px", backgroundSize: `${wallW}px ${IMG.h * s}px`, backgroundPosition: `0 ${-IMG.cut * s}px` });
+    const wy = iy => shelvesH + (iy - IMG.cut) * s;   // photo y to wall y
+    const place = (el, x0, y0, x1, y1) => Object.assign(el.style, { left: x0 * s + "px", top: wy(y0) + "px", width: (x1 - x0) * s + "px", height: (y1 - y0) * s + "px" });
+    place(vtape, ...IMG.tape); place($("vslot"), ...IMG.door); place($("vflap"), ...IMG.door); Object.assign($("vflap").style, { backgroundImage: 'url("assets/room-notape.jpg")', backgroundSize: `${IMG.w * s}px ${IMG.h * s}px`, backgroundPosition: `${-IMG.door[0] * s}px ${-IMG.door[1] * s}px` }); place($("vcase"), ...IMG.case); place($("cshadow"), ...IMG.shadow); place(vfd, ...IMG.vfd); place(tvscr, ...IMG.screen);
+    vfd.style.fontSize = (IMG.vfd[3] - IMG.vfd[1]) * s * .8 + "px";
+    tvscr.style.setProperty("--u", (IMG.screen[2] - IMG.screen[0]) * s / 100 + "px");
+    G2 = { s, tapeH: (IMG.tape[3] - IMG.tape[1]) * s };
+    const yEnd = clamp(H * .5 - wy(IMG.frameY), H - wallH, 0);
+    const panPx = -yEnd;
+    const [x0, y0, x1, y1] = IMG.screen;
+    const scx = X + ((x0 + x1) / 2) * s, scy = wy((y0 + y1) / 2);
+    // push in until the screen fills most of the view, bezel still showing
+    const S2 = Math.min(W * .8 / ((x1 - x0) * s), H * .55 / ((y1 - y0) * s));
+    const ZY = H * .5;
+    // Scroll budget: the pan runs at scroll speed, then fixed beats.
+    const beats = H * 3.4, panS = panPx * .55;   // scroll cost: the pan runs faster than the scroll, the beats are short
+    film.style.height = (H + panS + beats) + "px";
+    G = { X, panPx, yEnd, scx, scy, S2, ZY, wallW, wallH, total: panS + beats, panS };
+    sizeSnow();
+    render();
+  }
+
+  // Static
+  const ctx = snow.getContext("2d", { alpha: false });
+  let img = null, snowOn = false;
+  function sizeSnow() {
+    snow.width = Math.max(80, Math.round(W / 3)); snow.height = Math.max(60, Math.round(H / 3));
+    img = ctx.createImageData(snow.width, snow.height); drawSnow();
+    snow2.width = Math.max(60, Math.round(snow.width * .5)); snow2.height = Math.max(40, Math.round(snow.height * .5)); ctx2 && ctx2.drawImage(snow, 0, 0, snow2.width, snow2.height);
+  }
+  function drawSnow() {
+    const d = img.data;
+    for (let i = 0; i < d.length; i += 4) { const v = (Math.random() * 255) | 0; d[i] = d[i + 1] = d[i + 2] = v; d[i + 3] = 255; }
+    ctx.putImageData(img, 0, 0);
+  }
+  const ctx2 = snow2.getContext("2d", { alpha: false });
+  function loop() { drawSnow(); ctx2.drawImage(snow, 0, 0, snow2.width, snow2.height); if (snowOn) requestAnimationFrame(loop); }
+  function setSnow(on) { if (reduce) return; if (on && !snowOn) { snowOn = true; loop(); } else if (!on) { snowOn = false; } }
+
+  // Timecode
+  let tcStart = 0, tcRaf = 0;
+  function tick(t) { if (!tcStart) tcStart = t; const s = Math.floor((t - tcStart) / 1000); const pad = n => String(n).padStart(2, "0"); tc.textContent = "00:" + pad(Math.floor(s / 60)) + ":" + pad(s % 60); tcRaf = requestAnimationFrame(tick); }
+
+  function progress() {
+    const r = film.getBoundingClientRect();
+    return clamp(-r.top / (r.height - H));
+  }
+
+  function render() {
+    const p = progress();
+
+    // Beats 1 and 2: scroll down the bookcase to the deck and TV, then push into the screen
+    const px = p * G.total, panT = clamp(px / Math.max(1, G.panS));
+    const q = clamp((px - G.panS) / (G.total - G.panS)) * .95;   // 0..1 through the fixed beats
+    // the tape goes in, the deck wakes, the TV turns on, then we push in
+    // push the tape home. By hand: the top face shortens as it slides in. Then the deck's motor grabs it and pulls the last bit in, and the door snaps shut.
+    const hand = ease(seg(q, .02, .085)), grab = ease(seg(q, .088, .102)), shut = seg(q, .100, .112);
+    const tH = G2.tapeH * .268, fH = G2.tapeH * .732;
+    const topK = (1 - hand * .82) * (1 - grab);
+    $("vt").style.transform = `scaleY(${Math.max(0, topK)})`;
+    const lift = tH * (1 - topK), sink = fH * grab;
+    $("vf").style.transform = `translateY(${-lift - sink}px) scale(${1 - .03 * hand - .04 * grab}, 1)`;
+    $("vf").style.clipPath = `inset(${Math.min(100, sink / fH * 100)}% 0 0 0)`;
+    $("vf").style.filter = `brightness(${1 - .25 * hand - .5 * grab})`;
+    vtape.style.visibility = grab >= 1 ? "hidden" : "visible";
+    $("vslot").style.opacity = shut >= 1 ? 0 : 1;
+    const fl3 = $("vflap"); fl3.style.opacity = grab > .6 ? 1 : 0;
+    fl3.style.transform = `perspective(300px) rotateX(${-88 * (1 - Math.min(1, shut * (2 - shut)))}deg)`;
+    fl3.style.filter = `brightness(${.4 + .6 * shut})`;
+    wall.style.marginTop = (shut > 0 && shut < 1 ? Math.sin(shut * Math.PI) * 1.2 : 0) + "px";
+    const deckOn = seg(q, .13, .16); vfd.style.opacity = deckOn; vfd.classList.toggle("on", deckOn >= 1);
+    const tvOn = seg(q, .17, .21); tvscr.style.opacity = tvOn;
+    const fl2 = clamp((q - .17) / .04); tvflash.style.opacity = fl2 > 0 && fl2 < 1 ? 1 - fl2 : 0; tvflash.style.transform = `scaleX(${fl2 > 0 && fl2 < 1 ? .15 + fl2 * .85 : 0})`;
+    const zoom = seg(q, .24, .42);
+    const panY = lerp(0, G.yEnd, panT);
+    // push into the screen: its centre travels to the middle of the viewport while the wall scales up
+    const k = lerp(1, G.S2, zoom);
+    const wcx = G.scx - G.X, wcy = G.scy;            // screen centre in wall coordinates
+    const posX = lerp(G.X + wcx, W / 2, zoom), posY = lerp(panY + wcy, G.ZY, zoom);
+    // keep the camera inside the room: never show past the wall's edges
+    const TX = clamp(posX - k * wcx, Math.min(0, W - k * G.wallW), Math.max(0, W - k * G.wallW) * (G.wallW * k < W ? 1 : 0));
+    const TY = Math.max(posY - k * wcy, H - k * G.wallH);
+    wall.style.transform = `translate(${G.wallW * k < W ? posX - k * wcx : TX}px, ${TY}px) scale(${k})`;
+    cue.style.opacity = 1 - seg(panT, .0, .04);
+    mast.style.opacity = 1 - seg(panT, .02, .08);
+    room.style.pointerEvents = zoom > 0 ? "none" : "";
+    const P = q;   // later beats run on q
+
+    // Beat 3: power on, static
+    const on = seg(P, .38, .43), off = seg(P, .54, .60);
+    screen.style.opacity = 0;
+    const fl = clamp((P - 2) / .05);
+    flash.style.opacity = fl > 0 && fl < 1 ? 1 - fl : 0;
+    flash.style.transform = `scaleX(${fl > 0 && fl < 1 ? .2 + fl * .8 : 0})`;
+    setSnow(tvOn > 0 && off < 1);
+
+    // Beat 4: playback
+    play.style.opacity = off;
+    const out = 1 - seg(P, .80, .83);   // the titles go to black, then the instruction comes up on its own
+    logo.style.opacity = seg(P, .60, .66) * out;
+    logo.classList.toggle("jit", P > .62 && P < .9 && !reduce);
+    $("tUrl").style.opacity = seg(P, .66, .71) * out;
+    $("tTag").style.opacity = seg(P, .69, .74) * out;
+    soon.style.opacity = seg(P, .72, .77) * out;
+    $("tReg").style.opacity = seg(P, .855, .89);
+    $("oSp").style.opacity = tc.style.opacity = 1 - seg(P, .73, .77);
+    if (off > 0 && !tcRaf) tcRaf = requestAnimationFrame(tick);
+    if (off === 0 && tcRaf) { cancelAnimationFrame(tcRaf); tcRaf = 0; tcStart = 0; tc.textContent = "00:00:00"; }
+
+    // Beat 5: no fade, the page scrolls on to the list
+    black.style.opacity = 0;
+  }
+
+  let pending = false;
+  addEventListener("scroll", () => { if (!pending) { pending = true; requestAnimationFrame(() => { pending = false; render(); }); } }, { passive: true });
+  addEventListener("resize", layout);
+  layout();
+
+  // Pull a tape off the shelf
+  const box = $("box"), boxImg = $("boxImg"), boxNo = $("boxNo"), boxTitle = $("boxTitle"), boxWhen = $("boxWhen");
+  let cur = -1, lastFocus = null;
+  function openTape(k) {
+    cur = (k + TAPES.length) % TAPES.length; const t = TAPES[cur];
+    boxImg.src = `assets/tapes/p${String(t.i).padStart(2, "0")}.jpg`; boxImg.alt = `Like Minds poster: ${t.title}, ${t.label}`;
+    boxNo.textContent = `LM ${String(cur + 1).padStart(3, "0")}`; boxTitle.textContent = t.title; boxWhen.textContent = t.label;
+    if (box.hidden) { lastFocus = document.activeElement; box.hidden = false; document.documentElement.style.overflow = "hidden"; $("boxClose").focus(); }
+  }
+  function closeTape() { box.hidden = true; document.documentElement.style.overflow = ""; lastFocus?.focus?.(); }
+  rows.addEventListener("click", e => { const b = e.target.closest(".tape"); if (b) openTape(+b.dataset.k); });
+  $("boxClose").addEventListener("click", closeTape);
+  $("boxPrev").addEventListener("click", () => openTape(cur - 1));
+  $("boxNext").addEventListener("click", () => openTape(cur + 1));
+  box.addEventListener("click", e => { if (e.target === box) closeTape(); });
+  addEventListener("keydown", e => { if (box.hidden) return; if (e.key === "Escape") closeTape(); if (e.key === "ArrowLeft") openTape(cur - 1); if (e.key === "ArrowRight") openTape(cur + 1); });
+
+  // Form
+  const FORM_ENDPOINT = "https://script.google.com/macros/s/AKfycbxCFU1Pwu_UCaeAZAFD13KfasWGFVG0Lqm5ljqQ4DmwIkVRVCDqyL5dsLDEUNipZeDf/exec";
+  const form = $("signup"), status = $("status"), thanks = $("thanks"), submit = $("submit");
+  form.addEventListener("submit", async e => {
+    e.preventDefault(); status.textContent = "";
+    if (!form.checkValidity()) { status.textContent = "Name, email, city, craft and Instagram, plus the tick."; form.querySelector(":invalid")?.focus(); return; }
+    const data = Object.fromEntries(new FormData(form).entries());
+    data.instagram = "@" + String(data.instagram || "").trim().replace(/^@+/, "");
+    for (const k of ["linkedin", "work"]) { const v = String(data[k] || "").trim(); data[k] = v && !/^https?:\/\//i.test(v) ? "https://" + v : v; }
+    Object.assign(data, { consent: "yes", founding_member: "yes", source: "likeminds.ae", submitted_at: new Date().toISOString() });
     if (!FORM_ENDPOINT) { done("Preview mode: this sign-up wasn't stored. Connect an endpoint in the page script to go live."); return; }
     submit.disabled = true; status.textContent = "Sending…";
     try {
-      const isAppsScript = FORM_ENDPOINT.includes("script.google.com");
-      // Apps Script can't answer a CORS preflight, so it gets a plain-text body and an opaque response.
-      const r = await fetch(FORM_ENDPOINT, isAppsScript
-        ? { method: "POST", mode: "no-cors", headers: { "Content-Type": "text/plain" }, body: JSON.stringify(data) }
-        : { method: "POST", headers: { "Content-Type": "application/json", "Accept": "application/json" }, body: JSON.stringify(data) });
-      if (!isAppsScript && !r.ok) throw new Error(r.status);
+      const gs = FORM_ENDPOINT.includes("script.google.com");
+      const r = await fetch(FORM_ENDPOINT, gs ? { method: "POST", mode: "no-cors", headers: { "Content-Type": "text/plain" }, body: JSON.stringify(data) }
+                                             : { method: "POST", headers: { "Content-Type": "application/json", Accept: "application/json" }, body: JSON.stringify(data) });
+      if (!gs && !r.ok) throw new Error(r.status);
       done();
-    } catch (err) {
-      submit.disabled = false;
-      status.textContent = "That didn't send. Try again, or DM us on Instagram.";
-    }
+    } catch { submit.disabled = false; status.textContent = "That didn't send. Try again, or DM us on Instagram."; }
   });
-
-  function done(note) {
-    form.hidden = true;
-    thanks.hidden = false;
-    if (note) document.getElementById("thanks-copy").textContent = note;
-    thanks.scrollIntoView({ block: "center" });
-  }
+  function done(note) { form.hidden = true; thanks.hidden = false; if (note) $("thanks-copy").textContent = note; thanks.scrollIntoView({ block: "center" }); }
+})();
 </script>
+
 </body>
 </html>
