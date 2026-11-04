@@ -107,7 +107,7 @@
   </section>
 
   <section class="designs" aria-labelledby="designs-h">
-    <div class="dhead"><h2 id="designs-h">Pick your design<span class="stop">.</span></h2><p class="nt">Six founding member prints. Five come in English or Arabic, the palm laurel carries both. You choose your design at checkout.</p></div>
+    <div class="dhead"><h2 id="designs-h">Pick your design<span class="stop">.</span></h2><p class="nt">Five founding member prints, each in English or Arabic. You choose your design at checkout.</p></div>
     <div class="dgrid" id="designs"></div>
   </section>
 
@@ -131,8 +131,7 @@
     { k: "falcon", name: "Falcon", en: "Locked In", ar: "عين على الهدف" },
     { k: "hamour", name: "Hamour", en: "Feed the Mind", ar: "غذاء العقل" },
     { k: "fox", name: "Desert Fox", en: "Crafty Muse", ar: "فطنة وإلهام" },
-    { k: "oryx", name: "Arabian Oryx", en: "Steady Hands", ar: "ثابت الخطى" },
-    { k: "laurel", name: "Palm Laurel", en: "Story is Everything", ar: "الحكاية كل شيء", both: true }
+    { k: "oryx", name: "Arabian Oryx", en: "Steady Hands", ar: "ثابت الخطى" }
   ];
   const dg = document.getElementById("designs");
   dg.innerHTML = DESIGNS.map(d => `
@@ -156,16 +155,16 @@
     sweat: '<path d="M66 36 L102 22 Q120 36 138 22 L174 36 L212 196 L190 202 L168 100 L168 224 L72 224 L72 100 L50 202 L28 196 Z"/><path d="M102 22 Q120 44 138 22"/><path d="M72 212 L168 212"/>'
   };
   const ITEMS = [
-    { k: "tee", img: "assets/og/LM-tee-laurel.jpg", tag: "Any of the six designs", name: "OG Tee", sub: "Heavyweight cotton.", price: 250, colours: ["Black", "White"], fits: ["Fitted", "Oversized"], sizes: SIZES },
-    { k: "singlet", tag: "Any of the six designs", name: "OG Singlet", sub: "For the Dubai summer.", price: 200, colours: ["Black", "White"], sizes: SIZES },
+    { k: "tee", img: "assets/og/LM-tee-caracal-EN.jpg", tag: "Any of the five designs", name: "OG Tee", sub: "Heavyweight cotton.", price: 250, colours: ["Black", "White"], fits: ["Fitted", "Oversized"], sizes: SIZES },
+    { k: "singlet", tag: "Any of the five designs", name: "OG Singlet", sub: "For the Dubai summer.", price: 200, colours: ["Black", "White"], sizes: SIZES },
     { k: "hat", tag: "Embroidered logo", name: "OG Cap", sub: "Embroidered.", price: 200, colours: ["Black"], sizes: ["One size, adjustable"] },
-    { k: "hoodie", tag: "Any of the six designs", name: "OG Hoodie", sub: "Heavyweight fleece.", price: 350, colours: ["Black"], sizes: SIZES },
+    { k: "hoodie", tag: "Any of the five designs", name: "OG Hoodie", sub: "Heavyweight fleece.", price: 350, colours: ["Black"], sizes: SIZES },
     { k: "sweat", tag: "Artwork reveal soon", name: "OG Sweatshirt", sub: "Like Minds down the side.", price: 350, colours: ["Black"], sizes: SIZES }
   ];
   const chips = (a, cls = "") => a.map(x => `<i class="${cls}">${x}</i>`).join("");
   document.getElementById("items").innerHTML = ITEMS.map(t => `
     <article class="item">
-      <div class="art">${t.img ? `<img src="${t.img}" alt="${t.name} with the palm laurel print" loading="lazy">` : `<svg viewBox="0 0 240 240" fill="none" stroke="#eeefd7" stroke-width="3" stroke-linejoin="round" aria-hidden="true">${S[t.k]}</svg>`}<span class="tag">${t.tag}</span></div>
+      <div class="art">${t.img ? `<img src="${t.img}" alt="${t.name} with the Arabian Caracal print" loading="lazy">` : `<svg viewBox="0 0 240 240" fill="none" stroke="#eeefd7" stroke-width="3" stroke-linejoin="round" aria-hidden="true">${S[t.k]}</svg>`}<span class="tag">${t.tag}</span></div>
       <h2>${t.name}<span class="stop">.</span><span class="sub">${t.sub}</span></h2>
       <dl class="opts">
         <div><dt>Colour</dt><dd>${chips(t.colours)}</dd></div>
