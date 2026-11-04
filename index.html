@@ -109,13 +109,11 @@
   .masthead img { width: 72px; height: auto; display: block; }
   .tag { font-family: var(--display); font-size: 12px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--cream); margin: 6px 0 0; text-shadow: 0 1px 8px rgba(0,0,0,.6); }
   .cue { position: absolute; z-index: 6; pointer-events: none; left: 50%; bottom: calc(28px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 10px; color: var(--cream); text-shadow: 0 1px 8px rgba(0,0,0,.7); }
-  .cue-b { position: relative; display: grid; grid-template-columns: auto auto; grid-template-rows: auto auto; border: 2px solid #eeefd7; box-shadow: 0 10px 30px rgba(0,0,0,.6); font-family: "New Spirit", Georgia, serif; font-weight: 600; line-height: .86; text-shadow: none; letter-spacing: -.01em; }
-  .cue-bar { grid-row: 1 / 3; width: clamp(10px, 1vw, 14px); background: #d84b4b; }
-  .cue-1, .cue-2 { display: flex; align-items: center; gap: .3em; font-size: clamp(26px, 2.6vw, 40px); padding: .12em .32em .06em .22em; }
-  .cue-1 { background: #86a4a0; color: #111110; }
-  .cue-2 { background: #111110; color: #eeefd7; border-top: 2px solid #eeefd7; }
-  .cue-a { display: inline-block; width: .32em; height: .32em; border-right: .09em solid #d84b4b; border-bottom: .09em solid #d84b4b; transform: rotate(45deg); margin: -.22em 0 0 .05em; animation: nudge 1.4s ease-in-out infinite; }
-  @keyframes nudge { 0%, 100% { transform: translateY(-.06em) rotate(45deg); opacity: .55 } 50% { transform: translateY(.1em) rotate(45deg); opacity: 1 } }
+  .cue::before { content: ""; position: absolute; inset: -60px -120px -40px; z-index: -1; background: radial-gradient(closest-side, rgba(17,17,16,.82), rgba(17,17,16,.55) 55%, rgba(17,17,16,0)); }
+  .cue-l { font-family: var(--display); font-size: clamp(12px, 1vw, 14px); font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: #86a4a0; text-shadow: none; }
+  .cue-h { font-family: var(--display); font-weight: 600; font-size: clamp(36px, 4.4vw, 64px); letter-spacing: -.045em; line-height: .92; color: #eeefd7; text-shadow: 0 2px 18px rgba(0,0,0,.6); white-space: nowrap; }
+  .cue-h b { color: #d84b4b; font-weight: 600; }
+  .cue-line { display: block; width: 2px; height: clamp(36px, 5vh, 56px); background: linear-gradient(#eeefd7, rgba(238,239,215,0)); transform-origin: top; animation: drip 1.8s ease-in-out infinite; }
   @keyframes drip { 0% { transform: scaleY(0); opacity: 1 } 60% { transform: scaleY(1); opacity: 1 } 100% { transform: scaleY(1); opacity: 0 } }
 
   /* Beats 3 and 4: the screen */
@@ -246,7 +244,7 @@
   :root[data-theme="dark"] .flogo { background-image: url("assets/logo-light-uae.png"); }
   @media (max-width: 720px) { footer .wrap { grid-template-columns: 1fr; align-items: start; } }
 
-  @media (prefers-reduced-motion: reduce) { .cue-a, .tvplay .band, .title img.jit, .reg .down { animation: none; } }
+  @media (prefers-reduced-motion: reduce) { .cue-line, .tvplay .band, .title img.jit, .reg .down { animation: none; } }
   @media (pointer: coarse) { .chip-r span { padding: 13px 15px; } }
   .consent input { width: 20px !important; height: 20px !important; margin-top: 0 !important; }
   .foot a { display: inline-block; padding-block: 10px; }
@@ -291,7 +289,7 @@
         <img src="assets/logo-light-small.png" alt="Like Minds">
         <p class="tag">Dubai · Opening soon</p>
       </div>
-      <div class="cue" id="cue" aria-label="Scroll down"><div class="cue-b" aria-hidden="true"><i class="cue-bar"></i><span class="cue-1">SCROLL</span><span class="cue-2">DOWN <b class="cue-a"></b></span></div></div>
+      <div class="cue" id="cue"><span class="cue-l">Press play</span><span class="cue-h">Scroll down<b>.</b></span><i class="cue-line" aria-hidden="true"></i></div>
     </div>
 
     <div class="layer screen" id="screen">
