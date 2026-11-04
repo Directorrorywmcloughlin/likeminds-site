@@ -68,6 +68,22 @@
   footer { border-top: 1px solid var(--rule); }
   footer .wrap { padding-block: 40px; display: flex; flex-wrap: wrap; gap: 12px 28px; font-family: var(--display); font-size: 14px; color: var(--muted); }
   footer a { display: inline-block; padding-block: 8px; color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--rule); }
+
+  .designs { padding-block: 56px 8px; }
+  .dhead { display: flex; justify-content: space-between; align-items: end; gap: 16px 48px; flex-wrap: wrap; }
+  .dhead .nt, .note .nt { color: var(--muted); font-size: 18px; max-width: 46ch; }
+  .dgrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; margin-top: 32px; }
+  @media (max-width: 860px) { .dgrid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (max-width: 520px) { .dgrid { grid-template-columns: 1fr; } }
+  .design { display: grid; gap: 12px; min-width: 0; }
+  .design .ph { position: relative; background: #e8e5de; aspect-ratio: 1 / 1; max-width: 100%; overflow: hidden; }
+  .design .ph img { display: block; width: 100%; height: 100%; object-fit: cover; }
+  .design h3 { font-family: var(--display); font-size: 20px; font-weight: 600; letter-spacing: -.02em; margin: 0; }
+  .design h3 span { display: block; font-size: 14px; font-weight: 500; letter-spacing: 0; color: var(--muted); margin-top: 4px; }
+  .lang { display: flex; gap: 6px; }
+  .lang button { font-family: var(--display); font-size: 13px; font-weight: 600; min-height: 36px; padding: 0 12px; background: transparent; color: var(--ink); border: 1px solid var(--muted); cursor: pointer; }
+  .lang button[aria-pressed="true"] { background: var(--ink); color: var(--black); border-color: var(--ink); }
+  .art img { width: 100%; height: 100%; object-fit: cover; display: block; }
 </style>
 </head>
 <body>
@@ -84,15 +100,21 @@
       <div class="facts">
         <span><b>Pre-order only.</b> Nothing is printed until the run closes.</span>
         <span><b>Pay now, wear later.</b> We'll email your delivery date once production is booked.</span>
-        <span><b>Pick up or delivery.</b> Collect at a <span class="brand">Like Minds</span> night, or have it sent.</span>
+        <span><b>Pick up or delivery.</b> Collect free at a <span class="brand">Like Minds</span> night, or UAE delivery for AED 25.</span>
+        <span><b>Run closes Wednesday 25 November.</b> After that, this artwork isn't made again.</span>
       </div>
     </div>
+  </section>
+
+  <section class="designs" aria-labelledby="designs-h">
+    <div class="dhead"><h2 id="designs-h">Pick your design<span class="stop">.</span></h2><p class="nt">Six founding member prints. Five come in English or Arabic, the palm laurel carries both. You choose your design at checkout.</p></div>
+    <div class="dgrid" id="designs"></div>
   </section>
 
   <section class="grid" id="items" aria-label="OG merch"></section>
 
   <section class="how" aria-label="How the pre-order works">
-    <div><h3>1. Pre-order</h3><p>Choose your size and fit, pay securely through Stripe. You'll get a receipt by email.</p></div>
+    <div><h3>1. Pre-order</h3><p>Tap Pre-order, then choose your design, colour, fit and size at checkout. Pay securely through Stripe and you'll get a receipt by email.</p></div>
     <div><h3>2. We make it</h3><p>When the run closes we book production based on what's ordered. Only what's ordered gets made.</p></div>
     <div><h3>3. You wear it</h3><p>We email your delivery date. Collect at a night or we send it. Full details in the <a href="terms.html">pre-order terms</a>.</p></div>
   </section>
@@ -104,6 +126,27 @@
 (() => {
   // Paste each Stripe payment link here. An empty link shows "Opens soon".
   const PAY = { tee: "", singlet: "", hat: "", hoodie: "", sweat: "" };
+  const DESIGNS = [
+    { k: "caracal", name: "Arabian Caracal", en: "Fiercely Creative", ar: "جرأة الإبداع" },
+    { k: "falcon", name: "Falcon", en: "Locked In", ar: "عين على الهدف" },
+    { k: "hamour", name: "Hamour", en: "Feed the Mind", ar: "غذاء العقل" },
+    { k: "fox", name: "Desert Fox", en: "Crafty Muse", ar: "فطنة وإلهام" },
+    { k: "oryx", name: "Arabian Oryx", en: "Steady Hands", ar: "ثابت الخطى" },
+    { k: "laurel", name: "Palm Laurel", en: "Story is Everything", ar: "الحكاية كل شيء", both: true }
+  ];
+  const dg = document.getElementById("designs");
+  dg.innerHTML = DESIGNS.map(d => `
+    <article class="design" data-k="${d.k}">
+      <div class="ph"><img src="assets/og/LM-tee-${d.k}${d.both ? "" : "-EN"}.jpg" alt="${d.name} print on a black tee" loading="lazy"></div>
+      <h3>${d.name}<span>${d.en} · <bdi lang="ar" dir="rtl">${d.ar}</bdi></span></h3>
+      ${d.both ? `<p class="label muted" style="letter-spacing:.14em;font-size:12px">English and Arabic</p>` : `<div class="lang" role="group" aria-label="${d.name} print language"><button type="button" aria-pressed="true" data-l="EN">English</button><button type="button" aria-pressed="false" data-l="AR">Arabic</button></div>`}
+    </article>`).join("");
+  dg.addEventListener("click", e => {
+    const b = e.target.closest(".lang button"); if (!b) return;
+    const card = b.closest(".design");
+    card.querySelectorAll(".lang button").forEach(x => x.setAttribute("aria-pressed", x === b));
+    card.querySelector("img").src = `assets/og/LM-tee-${card.dataset.k}-${b.dataset.l}.jpg`;
+  });
   const SIZES = ["S", "M", "L", "XL", "XXL"];
   const S = {
     tee: '<path d="M70 30 L100 18 Q120 34 140 18 L170 30 L205 62 L182 88 L165 74 L165 222 L75 222 L75 74 L58 88 L35 62 Z"/><path d="M100 18 Q120 44 140 18"/>',
@@ -113,16 +156,16 @@
     sweat: '<path d="M66 36 L102 22 Q120 36 138 22 L174 36 L212 196 L190 202 L168 100 L168 224 L72 224 L72 100 L50 202 L28 196 Z"/><path d="M102 22 Q120 44 138 22"/><path d="M72 212 L168 212"/>'
   };
   const ITEMS = [
-    { k: "tee", name: "OG Tee", sub: "Heavyweight cotton.", price: 250, colours: ["Black", "White"], fits: ["Fitted", "Oversized"], sizes: SIZES },
-    { k: "singlet", name: "OG Singlet", sub: "For the Dubai summer.", price: 200, colours: ["Black", "White"], sizes: SIZES },
-    { k: "hat", name: "OG Cap", sub: "Embroidered.", price: 200, colours: ["Black"], sizes: ["One size, adjustable"] },
-    { k: "hoodie", name: "OG Hoodie", sub: "Heavyweight fleece.", price: 350, colours: ["Black"], sizes: SIZES },
-    { k: "sweat", name: "OG Sweatshirt", sub: "Like Minds down the side.", price: 350, colours: ["Black"], sizes: SIZES }
+    { k: "tee", img: "assets/og/LM-tee-laurel.jpg", tag: "Any of the six designs", name: "OG Tee", sub: "Heavyweight cotton.", price: 250, colours: ["Black", "White"], fits: ["Fitted", "Oversized"], sizes: SIZES },
+    { k: "singlet", tag: "Any of the six designs", name: "OG Singlet", sub: "For the Dubai summer.", price: 200, colours: ["Black", "White"], sizes: SIZES },
+    { k: "hat", tag: "Embroidered logo", name: "OG Cap", sub: "Embroidered.", price: 200, colours: ["Black"], sizes: ["One size, adjustable"] },
+    { k: "hoodie", tag: "Any of the six designs", name: "OG Hoodie", sub: "Heavyweight fleece.", price: 350, colours: ["Black"], sizes: SIZES },
+    { k: "sweat", tag: "Artwork reveal soon", name: "OG Sweatshirt", sub: "Like Minds down the side.", price: 350, colours: ["Black"], sizes: SIZES }
   ];
   const chips = (a, cls = "") => a.map(x => `<i class="${cls}">${x}</i>`).join("");
   document.getElementById("items").innerHTML = ITEMS.map(t => `
     <article class="item">
-      <div class="art"><svg viewBox="0 0 240 240" fill="none" stroke="#eeefd7" stroke-width="3" stroke-linejoin="round" aria-hidden="true">${S[t.k]}</svg><span class="tag">Artwork reveal soon</span></div>
+      <div class="art">${t.img ? `<img src="${t.img}" alt="${t.name} with the palm laurel print" loading="lazy">` : `<svg viewBox="0 0 240 240" fill="none" stroke="#eeefd7" stroke-width="3" stroke-linejoin="round" aria-hidden="true">${S[t.k]}</svg>`}<span class="tag">${t.tag}</span></div>
       <h2>${t.name}<span class="stop">.</span><span class="sub">${t.sub}</span></h2>
       <dl class="opts">
         <div><dt>Colour</dt><dd>${chips(t.colours)}</dd></div>
@@ -131,7 +174,7 @@
       </dl>
       <div class="buy"><span class="price"><small>AED</small>${t.price}</span>
         ${PAY[t.k] ? `<a class="btn" href="${PAY[t.k]}" rel="noopener">Pre-order</a>` : `<a class="btn" aria-disabled="true">Opens soon</a>`}</div>
-    </article>`).join("") + `<article class="item note"><p class="label">Coming with the artwork</p><h2>The prints<span class="stop">.</span></h2><p class="nt">Every piece carries founding member artwork, revealed before the run opens. A size guide goes up with it. Questions? <a href="mailto:hello@likeminds.ae">hello@likeminds.ae</a></p></article>`;
+    </article>`).join("") + `<article class="item note"><p class="label">Good to know</p><h2>Before you order<span class="stop">.</span></h2><p class="nt">Fitted runs true to size, oversized is cut big and boxy. Pre-orders close Wednesday 25 November. Questions? <a href="mailto:hello@likeminds.ae">hello@likeminds.ae</a></p></article>`;
 })();
 </script>
 </body>
