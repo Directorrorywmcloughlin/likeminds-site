@@ -109,10 +109,13 @@
   .masthead img { width: 72px; height: auto; display: block; }
   .tag { font-family: var(--display); font-size: 12px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--cream); margin: 6px 0 0; text-shadow: 0 1px 8px rgba(0,0,0,.6); }
   .cue { position: absolute; z-index: 6; pointer-events: none; left: 50%; bottom: calc(28px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 10px; color: var(--cream); text-shadow: 0 1px 8px rgba(0,0,0,.7); }
-  .cue-b { font-family: var(--display); font-size: clamp(14px, 1.3vw, 17px); font-weight: 700; letter-spacing: .24em; text-transform: uppercase; color: #111110; background: #eeefd7; padding: 13px 20px 12px 24px; box-shadow: 0 6px 24px rgba(0,0,0,.55); text-shadow: none; }
-  .cue-a { display: block; width: 18px; height: 18px; border-right: 3px solid #eeefd7; border-bottom: 3px solid #eeefd7; transform: rotate(45deg); animation: nudge 1.4s ease-in-out infinite; filter: drop-shadow(0 2px 4px rgba(0,0,0,.7)); }
-  @keyframes nudge { 0%, 100% { transform: translateY(-4px) rotate(45deg); opacity: .6 } 50% { transform: translateY(6px) rotate(45deg); opacity: 1 } }
-  .cue i { display: block; width: 1px; height: 44px; background: var(--cream); transform-origin: top; animation: drip 1.8s ease-in-out infinite; }
+  .cue-b { position: relative; display: grid; grid-template-columns: auto auto; grid-template-rows: auto auto; border: 2px solid #eeefd7; box-shadow: 0 10px 30px rgba(0,0,0,.6); font-family: "New Spirit", Georgia, serif; font-weight: 600; line-height: .86; text-shadow: none; letter-spacing: -.01em; }
+  .cue-bar { grid-row: 1 / 3; width: clamp(10px, 1vw, 14px); background: #d84b4b; }
+  .cue-1, .cue-2 { display: flex; align-items: center; gap: .3em; font-size: clamp(26px, 2.6vw, 40px); padding: .12em .32em .06em .22em; }
+  .cue-1 { background: #86a4a0; color: #111110; }
+  .cue-2 { background: #111110; color: #eeefd7; border-top: 2px solid #eeefd7; }
+  .cue-a { display: inline-block; width: .32em; height: .32em; border-right: .09em solid #d84b4b; border-bottom: .09em solid #d84b4b; transform: rotate(45deg); margin: -.22em 0 0 .05em; animation: nudge 1.4s ease-in-out infinite; }
+  @keyframes nudge { 0%, 100% { transform: translateY(-.06em) rotate(45deg); opacity: .55 } 50% { transform: translateY(.1em) rotate(45deg); opacity: 1 } }
   @keyframes drip { 0% { transform: scaleY(0); opacity: 1 } 60% { transform: scaleY(1); opacity: 1 } 100% { transform: scaleY(1); opacity: 0 } }
 
   /* Beats 3 and 4: the screen */
@@ -285,7 +288,7 @@
         <img src="assets/logo-light-small.png" alt="Like Minds">
         <p class="tag">Dubai · Opening soon</p>
       </div>
-      <div class="cue" id="cue"><span class="cue-b">Scroll down</span><b class="cue-a" aria-hidden="true"></b></div>
+      <div class="cue" id="cue" aria-label="Scroll down"><div class="cue-b" aria-hidden="true"><i class="cue-bar"></i><span class="cue-1">SCROLL</span><span class="cue-2">DOWN <b class="cue-a"></b></span></div></div>
     </div>
 
     <div class="layer screen" id="screen">
@@ -481,7 +484,7 @@
     const S2 = Math.min(W * (W < 700 ? .97 : .8) / ((x1 - x0) * s), H * .55 / ((y1 - y0) * s));
     const ZY = H * .5;
     // Scroll budget: the pan runs at scroll speed, then fixed beats.
-    const beats = H * 4.6, panS = panPx * .32;   // scroll cost: the pan runs faster than the scroll, the beats are short
+    const beats = H * 4.6, panS = panPx * .43;   // scroll cost: the pan runs faster than the scroll, the beats are short
     film.style.height = (H + panS + beats) + "px";
     G = { X, panPx, yEnd, scx, scy, S2, ZY, wallW, wallH, total: panS + beats, panS };
     sizeSnow();
@@ -520,7 +523,9 @@
     // Beats 1 and 2: scroll down the bookcase to the deck and TV, then push into the screen
     const px = p * G.total, panT = clamp(px / Math.max(1, G.panS));
     const rq = clamp((px - G.panS) / (G.total - G.panS));
-    const q = rq < .1 ? rq / .1 * .24 : .24 + (rq - .1) / .9 * .71;   // tape and power-on go by fast, the TV gets most of the scroll   // 0..1 through the fixed beats
+    // scroll-to-story map: tape and power-on quick, zoom steady, static short, the titles get room to read, then the instruction
+    const K = [[0, 0], [.07, .24], [.22, .42], [.27, .60], [.72, .80], [1, .95]];
+    let q = .95; for (let i = 1; i < K.length; i++) if (rq <= K[i][0]) { const [a0, b0] = K[i - 1], [a1, b1] = K[i]; q = b0 + (rq - a0) / (a1 - a0) * (b1 - b0); break; }   // 0..1 through the fixed beats
     // the tape goes in, the deck wakes, the TV turns on, then we push in
     // push the tape home. By hand: the top face shortens as it slides in. Then the deck's motor grabs it and pulls the last bit in, and the door snaps shut.
     const hand = ease(seg(q, .02, .085)), grab = ease(seg(q, .088, .102)), shut = seg(q, .100, .112);
