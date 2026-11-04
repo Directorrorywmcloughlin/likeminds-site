@@ -109,8 +109,9 @@
   .masthead img { width: 72px; height: auto; display: block; }
   .tag { font-family: var(--display); font-size: 12px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--cream); margin: 6px 0 0; text-shadow: 0 1px 8px rgba(0,0,0,.6); }
   .cue { position: absolute; z-index: 6; pointer-events: none; left: 50%; bottom: calc(28px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 10px; color: var(--cream); text-shadow: 0 1px 8px rgba(0,0,0,.7); }
-  .cue span:first-child { font-family: var(--marker); font-size: 18px; letter-spacing: .02em; text-transform: none; }
-  .cue span { font-family: var(--display); font-size: 12px; font-weight: 600; letter-spacing: .3em; text-transform: uppercase; }
+  .cue-b { font-family: var(--display); font-size: clamp(14px, 1.3vw, 17px); font-weight: 700; letter-spacing: .24em; text-transform: uppercase; color: #111110; background: #eeefd7; padding: 13px 20px 12px 24px; box-shadow: 0 6px 24px rgba(0,0,0,.55); text-shadow: none; }
+  .cue-a { display: block; width: 18px; height: 18px; border-right: 3px solid #eeefd7; border-bottom: 3px solid #eeefd7; transform: rotate(45deg); animation: nudge 1.4s ease-in-out infinite; filter: drop-shadow(0 2px 4px rgba(0,0,0,.7)); }
+  @keyframes nudge { 0%, 100% { transform: translateY(-4px) rotate(45deg); opacity: .6 } 50% { transform: translateY(6px) rotate(45deg); opacity: 1 } }
   .cue i { display: block; width: 1px; height: 44px; background: var(--cream); transform-origin: top; animation: drip 1.8s ease-in-out infinite; }
   @keyframes drip { 0% { transform: scaleY(0); opacity: 1 } 60% { transform: scaleY(1); opacity: 1 } 100% { transform: scaleY(1); opacity: 0 } }
 
@@ -239,7 +240,7 @@
   :root[data-theme="dark"] .flogo { background-image: url("assets/logo-light-uae.png"); }
   @media (max-width: 720px) { footer .wrap { grid-template-columns: 1fr; align-items: start; } }
 
-  @media (prefers-reduced-motion: reduce) { .cue i, .tvplay .band, .title img.jit, .reg .down { animation: none; } }
+  @media (prefers-reduced-motion: reduce) { .cue-a, .tvplay .band, .title img.jit, .reg .down { animation: none; } }
   @media (pointer: coarse) { .chip-r span { padding: 13px 15px; } }
   .consent input { width: 20px !important; height: 20px !important; margin-top: 0 !important; }
   .foot a { display: inline-block; padding-block: 10px; }
@@ -284,7 +285,7 @@
         <img src="assets/logo-light-small.png" alt="Like Minds">
         <p class="tag">Dubai · Opening soon</p>
       </div>
-      <div class="cue" id="cue"><span>Scroll</span><i></i></div>
+      <div class="cue" id="cue"><span class="cue-b">Scroll down</span><b class="cue-a" aria-hidden="true"></b></div>
     </div>
 
     <div class="layer screen" id="screen">
@@ -480,7 +481,7 @@
     const S2 = Math.min(W * (W < 700 ? .97 : .8) / ((x1 - x0) * s), H * .55 / ((y1 - y0) * s));
     const ZY = H * .5;
     // Scroll budget: the pan runs at scroll speed, then fixed beats.
-    const beats = H * 3.4, panS = panPx * .55;   // scroll cost: the pan runs faster than the scroll, the beats are short
+    const beats = H * 4.6, panS = panPx * .32;   // scroll cost: the pan runs faster than the scroll, the beats are short
     film.style.height = (H + panS + beats) + "px";
     G = { X, panPx, yEnd, scx, scy, S2, ZY, wallW, wallH, total: panS + beats, panS };
     sizeSnow();
@@ -518,7 +519,8 @@
 
     // Beats 1 and 2: scroll down the bookcase to the deck and TV, then push into the screen
     const px = p * G.total, panT = clamp(px / Math.max(1, G.panS));
-    const q = clamp((px - G.panS) / (G.total - G.panS)) * .95;   // 0..1 through the fixed beats
+    const rq = clamp((px - G.panS) / (G.total - G.panS));
+    const q = rq < .1 ? rq / .1 * .24 : .24 + (rq - .1) / .9 * .71;   // tape and power-on go by fast, the TV gets most of the scroll   // 0..1 through the fixed beats
     // the tape goes in, the deck wakes, the TV turns on, then we push in
     // push the tape home. By hand: the top face shortens as it slides in. Then the deck's motor grabs it and pulls the last bit in, and the door snaps shut.
     const hand = ease(seg(q, .02, .085)), grab = ease(seg(q, .088, .102)), shut = seg(q, .100, .112);
