@@ -261,18 +261,19 @@
   .hfp a.card:hover .go { background: var(--red); color: #111110; }
   .hfp a.card:focus-visible { outline: 3px solid var(--focus); outline-offset: 4px; }
   @media (max-width: 760px) { .hfp a.card { grid-template-columns: 1fr; padding: 24px; } .hfp img { width: 120px; } .hfp .go { justify-self: start; } }
-  .topbar { display: flex; align-items: center; justify-content: center; gap: 12px 20px; flex-wrap: wrap; background: var(--cream); color: #111110; text-decoration: none; padding: 10px 16px; font-family: "Archivo", var(--display); font-size: 14px; font-weight: 700; position: relative; z-index: 5; }
-  .topbar img { height: 30px; width: auto; display: block; }
-  .topbar .go { border-bottom: 2px solid #111110; white-space: nowrap; }
+  .topbar { --k: 3; display: flex; align-items: center; justify-content: center; gap: calc(var(--k) * 8px) calc(var(--k) * 20px); flex-wrap: wrap; background: var(--cream); color: #111110; text-decoration: none; padding: calc(var(--k) * 10px) 16px; font-family: "Archivo", var(--display); font-size: calc(var(--k) * 14px); line-height: 1.1; font-weight: 700; position: relative; z-index: 5; }
+  .topbar img { height: calc(var(--k) * 30px); width: auto; display: block; }
+  .topbar .go { border-bottom: calc(var(--k) * 2px) solid #111110; white-space: nowrap; }
   .topbar:hover .go { color: var(--red-text); border-color: var(--red); }
   .topbar:focus-visible { outline: 3px solid #111110; outline-offset: -3px; }
-  @media (max-width: 560px) { .topbar .d { display: none; } .topbar { font-size: 13px; } }
+  @media (max-width: 1100px) { .topbar { --k: 2; } }
+  @media (max-width: 560px) { .topbar { --k: 1.5; font-size: calc(var(--k) * 13px); } .topbar .d { display: none; } }
 </style>
 </head>
 <body>
 <a class="topbar" href="/48hrproject" aria-label="48 Hour Film Project Dubai: still need a team? Find your crew">
   <img src="assets/logo-48hfp.png" alt="">
-  <span class="d">Dubai · 27–29 Nov ·</span>
+  <span class="d">Dubai · 27–29 Nov</span>
   <span>Still need a team?</span>
   <span class="go">Find your crew →</span>
 </a>
