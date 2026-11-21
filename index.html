@@ -12,7 +12,7 @@
 <meta name="description" content="Like Minds is getting a home. Founding members get in first.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,400;6..72,500&family=Permanent+Marker&family=VT323&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800&family=Inter+Tight:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,400;6..72,500&family=Permanent+Marker&family=VT323&display=swap">
 <style>
   /* Layout: one sticky stage scrubbed by scroll. Shelf, tilt to the deck, push into the screen, static, playback, black. Then the list on paper. */
   @font-face { font-family: "Mr Dafoe"; src: url("assets/MrDafoe.woff2") format("woff2"); font-display: swap; }
@@ -250,6 +250,17 @@
   .foot a { display: inline-block; padding-block: 10px; }
   .actions { justify-content: flex-start; }
   @media (max-width: 700px) { .tag2 { font-size: calc(var(--u) * 4.2) !important; max-width: 92%; } }
+  /* 48 Hour Film Project Dubai crew-finder strip (48hr Dubai look: ink on cream, Archivo) */
+  .hfp { padding-top: 72px; }
+  .hfp a.card { display: grid; grid-template-columns: auto 1fr auto; gap: 24px 40px; align-items: center; background: var(--cream); color: #111110; text-decoration: none; padding: 28px 32px; }
+  .hfp img { width: 120px; height: auto; display: block; }
+  .hfp .k { font-family: "Archivo", var(--display); font-size: 12px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; margin: 0 0 8px; color: #5a564d; }
+  .hfp .h { font-family: "Archivo", var(--display); font-size: clamp(24px, 3vw, 34px); font-weight: 800; line-height: 1.05; margin: 0 0 8px; }
+  .hfp .t { margin: 0; font-size: 17px; max-width: 44ch; }
+  .hfp .go { font-family: "Archivo", var(--display); font-size: 15px; font-weight: 700; padding: 16px 24px; background: #111110; color: var(--cream); white-space: nowrap; }
+  .hfp a.card:hover .go { background: var(--red); color: #111110; }
+  .hfp a.card:focus-visible { outline: 3px solid var(--focus); outline-offset: 4px; }
+  @media (max-width: 760px) { .hfp a.card { grid-template-columns: 1fr; padding: 24px; } .hfp img { width: 96px; } .hfp .go { justify-self: start; } }
 </style>
 </head>
 <body>
@@ -313,6 +324,19 @@
 </div>
 
 <div class="after">
+  <section class="hfp" aria-label="48 Hour Film Project Dubai">
+    <div class="wrap">
+      <a class="card" href="/48hrproject">
+        <img src="/48hrproject/brand/logo-48hfp-ink.png" alt="48 Hour Film Project">
+        <div>
+          <p class="k">48 Hour Film Project Dubai · 27–29&nbsp;Nov</p>
+          <p class="h">Still need a team?</p>
+          <p class="t">Build your crew profile, find the people you're missing, then register your team.</p>
+        </div>
+        <span class="go">Find your crew →</span>
+      </a>
+    </div>
+  </section>
   <section class="join" id="join">
     <div class="wrap">
       <div>
@@ -371,6 +395,7 @@
         <div class="foot">
           <a href="https://instagram.com/likemindsuae" target="_blank" rel="noopener">Instagram</a>
           <a href="#join">Founding members</a>
+          <a href="/48hrproject">48 Hour Film Project</a>
           <span>hello@likeminds.ae</span>
         </div>
         <p class="fine">Like Minds Global FZ-LLC · Dubai, UAE · likeminds.ae</p>
