@@ -181,7 +181,9 @@
 (() => {
   if (new URLSearchParams(location.search).has("joined")) document.getElementById("joined").hidden = false;
   // Paste each Stripe payment link here. An empty link shows "Opens soon".
-  const PAY = { tee: "https://buy.stripe.com/00w3co3Yv1YQ46s7hQcfK00", singlet: "https://buy.stripe.com/eVq6oA52z1YQ8mI31AcfK01", hat: "https://buy.stripe.com/14AbIU1Qn0UMbyU8lUcfK03", hoodie: "https://buy.stripe.com/7sYfZa8eL0UMcCYeKicfK02", sweat: "" };
+  const PAY = { tee: "https://buy.stripe.com/00w3co3Yv1YQ46s7hQcfK00", singlet: "", hat: "https://buy.stripe.com/14AbIU1Qn0UMbyU8lUcfK03", hoodie: "https://buy.stripe.com/7sYfZa8eL0UMcCYeKicfK02", sweat: "" };
+  // Flip to true once Stripe checkout lists Casting Tape and Masthead, and restore the singlet link: https://buy.stripe.com/eVq6oA52z1YQ8mI31AcfK01
+  const NEW_LIVE = false;
   const DESIGNS = [
     { k: "caracal", name: "Arabian Caracal", en: "Fiercely Creative", ar: "جرأة الإبداع", shots: ["caracal-s2", "caracal-f", "caracal-e", "caracal-s1", "caracal-s3"] },
     { k: "falcon", name: "Falcon", en: "Locked In", ar: "عين على الهدف", shots: ["falcon-f", "falcon-s1", "falcon-e", "falcon-s3", "falcon-s2"] },
@@ -217,7 +219,7 @@
       <div><h3>${d.name}<span class="stop">.</span></h3><p class="line" style="margin-top:10px">${d.en}${d.ar ? ` · <bdi lang="ar" dir="rtl">${d.ar}</bdi>` : ""}</p></div>
       <div class="flat"><div class="ph"><img id="flat" src="${art(d, "EN")}" alt="${d.name} artwork, flat"></div>
         ${d.one ? `<p class="label muted" style="letter-spacing:.14em;font-size:12px">English print</p>` : `<div class="lang" role="group" aria-label="Print language"><button type="button" aria-pressed="true" data-l="EN">English</button><button type="button" aria-pressed="false" data-l="AR">Arabic</button></div>`}</div>
-      <div class="comes">${(d.on || ["tee", "hoodie"]).map(g => `<a ${PAY[g] ? `href="${PAY[g]}" rel="noopener"` : `class="soon"`}>${GARMENT[g][0]} <span>AED ${GARMENT[g][1]}</span><b>${PAY[g] ? "Pre-order →" : "Opens soon"}</b></a>`).join("")}</div>
+      <div class="comes">${(d.on || ["tee", "hoodie"]).map(g => `<a ${PAY[g] && (NEW_LIVE || !d.one) ? `href="${PAY[g]}" rel="noopener"` : `class="soon"`}>${GARMENT[g][0]} <span>AED ${GARMENT[g][1]}</span><b>${PAY[g] && (NEW_LIVE || !d.one) ? "Pre-order →" : "Opens soon"}</b></a>`).join("")}</div>
       <p class="line" style="font-size:14px">You choose design, colour and size at checkout.</p>`;
     show(0);
     if (user) history.replaceState(null, "", "#" + d.k);
@@ -251,9 +253,9 @@
     sweat: '<path d="M66 36 L102 22 Q120 36 138 22 L174 36 L212 196 L190 202 L168 100 L168 224 L72 224 L72 100 L50 202 L28 196 Z"/><path d="M102 22 Q120 44 138 22"/><path d="M72 212 L168 212"/>'
   };
   const ITEMS = [
-    { k: "tee", img: "falcon-f", pos: "50% 30%", tag: "Any of the seven designs", name: "OG Tee", sub: "Heavyweight cotton.", price: 250, colours: ["Black", "White"], fits: ["Fitted", "Oversized"], sizes: SIZES },
+    { k: "tee", img: "falcon-f", pos: "50% 30%", tag: NEW_LIVE ? "Any of the seven designs" : "Five animals now. Two more soon", name: "OG Tee", sub: "Heavyweight cotton.", price: 250, colours: ["Black", "White"], fits: ["Fitted", "Oversized"], sizes: SIZES },
     { k: "singlet", img: "masthead-skater", tag: "Casting Tape or Masthead", name: "OG Singlet", sub: "For the Dubai summer.", price: 200, colours: ["Black", "White"], sizes: SIZES },
-    { k: "hoodie", img: "falcon-e", pos: "42% 50%", tag: "Any of the seven designs", name: "OG Hoodie", sub: "Heavyweight fleece.", price: 350, colours: ["Black"], sizes: SIZES },
+    { k: "hoodie", img: "falcon-e", pos: "42% 50%", tag: NEW_LIVE ? "Any of the seven designs" : "Five animals now. Two more soon", name: "OG Hoodie", sub: "Heavyweight fleece.", price: 350, colours: ["Black"], sizes: SIZES },
     { k: "sweat", img: "masthead-sweater", tag: "Masthead", name: "OG Sweater", sub: "Heavyweight crew neck.", price: 350, colours: ["Black"], sizes: SIZES }
   ];
   const chips = (a, cls = "") => a.map(x => `<i class="${cls}">${x}</i>`).join("");
