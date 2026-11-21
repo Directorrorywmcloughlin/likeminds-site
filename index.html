@@ -108,7 +108,7 @@
     padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
   .masthead img { width: 72px; height: auto; display: block; }
   .tag { font-family: var(--display); font-size: 12px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--cream); margin: 6px 0 0; text-shadow: 0 1px 8px rgba(0,0,0,.6); }
-  .cue { position: absolute; z-index: 6; pointer-events: none; left: 50%; bottom: calc(28px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 10px; color: var(--cream); text-shadow: 0 1px 8px rgba(0,0,0,.7); }
+  .cue { position: absolute; z-index: 6; pointer-events: none; left: 50%; bottom: calc(28px + env(safe-area-inset-bottom, 0px) + var(--lift, 0px)); transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 10px; color: var(--cream); text-shadow: 0 1px 8px rgba(0,0,0,.7); }
   .cue::before { content: ""; position: absolute; inset: -60px -120px -40px; z-index: -1; background: radial-gradient(closest-side, rgba(17,17,16,.82), rgba(17,17,16,.55) 55%, rgba(17,17,16,0)); }
   .cue-l { font-family: var(--display); font-size: clamp(12px, 1vw, 14px); font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: #86a4a0; text-shadow: none; }
   .cue-h { font-family: var(--display); font-weight: 600; font-size: clamp(36px, 4.4vw, 64px); letter-spacing: -.045em; line-height: .92; color: #eeefd7; text-shadow: 0 2px 18px rgba(0,0,0,.6); white-space: nowrap; }
@@ -676,5 +676,16 @@
 })();
 </script>
 
+<script>
+/* Keep the "Scroll down" prompt on screen while the 48hr banner pushes the stage down */
+(() => {
+  const bar = document.querySelector(".topbar"), cue = document.getElementById("cue");
+  if (!bar || !cue) return;
+  let tick = false;
+  const set = () => { tick = false; cue.style.setProperty("--lift", Math.max(0, bar.offsetHeight - scrollY) + "px"); };
+  const req = () => { if (!tick) { tick = true; requestAnimationFrame(set); } };
+  addEventListener("scroll", req, { passive: true }); addEventListener("resize", req); set();
+})();
+</script>
 </body>
 </html>
