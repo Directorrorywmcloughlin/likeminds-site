@@ -253,14 +253,14 @@
   /* 48 Hour Film Project Dubai crew-finder strip (48hr Dubai look: ink on cream, Archivo) */
   .hfp { padding-top: 72px; }
   .hfp a.card { display: grid; grid-template-columns: auto 1fr auto; gap: 24px 40px; align-items: center; background: var(--cream); color: #111110; text-decoration: none; padding: 28px 32px; }
-  .hfp img { width: 120px; height: auto; display: block; }
+  .hfp img { width: 150px; height: auto; display: block; }
   .hfp .k { font-family: "Archivo", var(--display); font-size: 12px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; margin: 0 0 8px; color: #5a564d; }
   .hfp .h { font-family: "Archivo", var(--display); font-size: clamp(24px, 3vw, 34px); font-weight: 800; line-height: 1.05; margin: 0 0 8px; }
   .hfp .t { margin: 0; font-size: 17px; max-width: 44ch; }
   .hfp .go { font-family: "Archivo", var(--display); font-size: 15px; font-weight: 700; padding: 16px 24px; background: #111110; color: var(--cream); white-space: nowrap; }
   .hfp a.card:hover .go { background: var(--red); color: #111110; }
   .hfp a.card:focus-visible { outline: 3px solid var(--focus); outline-offset: 4px; }
-  @media (max-width: 760px) { .hfp a.card { grid-template-columns: 1fr; padding: 24px; } .hfp img { width: 96px; } .hfp .go { justify-self: start; } }
+  @media (max-width: 760px) { .hfp a.card { grid-template-columns: 1fr; padding: 24px; } .hfp img { width: 120px; } .hfp .go { justify-self: start; } }
 </style>
 </head>
 <body>
@@ -327,9 +327,9 @@
   <section class="hfp" aria-label="48 Hour Film Project Dubai">
     <div class="wrap">
       <a class="card" href="/48hrproject">
-        <img src="/48hrproject/brand/logo-48hfp-ink.png" alt="48 Hour Film Project">
+        <img src="assets/logo-48hfp.png" alt="48 Hour Film Project">
         <div>
-          <p class="k">48 Hour Film Project Dubai · 27–29&nbsp;Nov</p>
+          <p class="k">48 Hour Film Project Dubai · <span style="white-space:nowrap">27–29 Nov</span></p>
           <p class="h">Still need a team?</p>
           <p class="t">Build your crew profile, find the people you're missing, then register your team.</p>
         </div>
