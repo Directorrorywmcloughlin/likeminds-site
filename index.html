@@ -678,7 +678,7 @@
       done();
     } catch { submit.disabled = false; status.textContent = "That didn't send. Try again, or DM us on Instagram."; }
   });
-  function done(note) { form.hidden = true; thanks.hidden = false; if (note) $("thanks-copy").textContent = note; thanks.scrollIntoView({ block: "center" }); }
+  function done(note) { form.hidden = true; thanks.hidden = false; if (note) { $("thanks-copy").textContent = note; thanks.scrollIntoView({ block: "center" }); return; } thanks.scrollIntoView({ block: "center" }); setTimeout(() => { location.href = "/shop.html?joined=1"; }, 1200); }
 })();
 </script>
 

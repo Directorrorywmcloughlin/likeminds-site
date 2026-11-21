@@ -90,6 +90,7 @@
 <header><div class="wrap"><a href="/" aria-label="Like Minds home"><img src="assets/logo-uae.png" alt="Like Minds, UAE's creative community"></a><p class="label muted">OG pre-order</p></div></header>
 
 <main class="wrap">
+  <p id="joined" hidden style="margin:24px 0 0;padding:16px 20px;border:1px solid currentColor;font-size:18px"><b>You're in.</b> We'll write when doors open. As a founding member, the OG run is yours first.</p>
   <section class="hero">
     <div>
       <p class="label">Founding members only</p>
@@ -107,7 +108,7 @@
   </section>
 
   <section class="designs" aria-labelledby="designs-h">
-    <div class="dhead"><h2 id="designs-h">Pick your design<span class="stop">.</span></h2><p class="nt">Five founding member prints, each in English or Arabic. You choose your design at checkout.</p></div>
+    <div class="dhead"><h2 id="designs-h">Pick your design<span class="stop">.</span></h2><p class="nt">Seven founding member prints. The five animals come in English or Arabic. You choose your design at checkout.</p></div>
     <div class="dgrid" id="designs"></div>
   </section>
 
@@ -124,6 +125,7 @@
 
 <script>
 (() => {
+  if (new URLSearchParams(location.search).has("joined")) document.getElementById("joined").hidden = false;
   // Paste each Stripe payment link here. An empty link shows "Opens soon".
   const PAY = { tee: "https://buy.stripe.com/00w3co3Yv1YQ46s7hQcfK00", singlet: "https://buy.stripe.com/eVq6oA52z1YQ8mI31AcfK01", hat: "https://buy.stripe.com/14AbIU1Qn0UMbyU8lUcfK03", hoodie: "https://buy.stripe.com/7sYfZa8eL0UMcCYeKicfK02", sweat: "" };
   const DESIGNS = [
@@ -131,20 +133,22 @@
     { k: "falcon", name: "Falcon", en: "Locked In", ar: "عين على الهدف" },
     { k: "hamour", name: "Hamour", en: "Feed the Mind", ar: "غذاء العقل" },
     { k: "fox", name: "Desert Fox", en: "Crafty Muse", ar: "فطنة وإلهام" },
-    { k: "oryx", name: "Arabian Oryx", en: "Steady Hands", ar: "ثابت الخطى" }
+    { k: "oryx", name: "Arabian Oryx", en: "Steady Hands", ar: "ثابت الخطى" },
+    { k: "tape", name: "Casting Tape", en: "Original Cast & Crew", one: true },
+    { k: "masthead", name: "Masthead", en: "Circa 2022", one: true }
   ];
   const dg = document.getElementById("designs");
   dg.innerHTML = DESIGNS.map(d => `
     <article class="design" data-k="${d.k}">
-      <div class="ph"><img src="assets/og/LM-tee-${d.k}${d.both ? "" : "-EN"}.jpg" alt="${d.name} print on a black tee" loading="lazy"></div>
-      <h3>${d.name}<span>${d.en} · <bdi lang="ar" dir="rtl">${d.ar}</bdi></span></h3>
-      ${d.both ? `<p class="label muted" style="letter-spacing:.14em;font-size:12px">English and Arabic</p>` : `<div class="lang" role="group" aria-label="${d.name} print language"><button type="button" aria-pressed="true" data-l="EN">English</button><button type="button" aria-pressed="false" data-l="AR">Arabic</button></div>`}
+      <div class="ph"><img src="assets/og/${d.one ? `LM-worn-${d.k}` : `LM-art-${d.k}-EN`}.jpg" alt="${d.one ? `${d.name} design, worn` : `${d.name} artwork on black`}" loading="lazy"></div>
+      <h3>${d.name}<span>${d.en}${d.ar ? ` · <bdi lang="ar" dir="rtl">${d.ar}</bdi>` : ""}</span></h3>
+      ${d.one ? `<p class="label muted" style="letter-spacing:.14em;font-size:12px">English</p>` : `<div class="lang" role="group" aria-label="${d.name} print language"><button type="button" aria-pressed="true" data-l="EN">English</button><button type="button" aria-pressed="false" data-l="AR">Arabic</button></div>`}
     </article>`).join("");
   dg.addEventListener("click", e => {
     const b = e.target.closest(".lang button"); if (!b) return;
     const card = b.closest(".design");
     card.querySelectorAll(".lang button").forEach(x => x.setAttribute("aria-pressed", x === b));
-    card.querySelector("img").src = `assets/og/LM-tee-${card.dataset.k}-${b.dataset.l}.jpg`;
+    card.querySelector("img").src = `assets/og/LM-art-${card.dataset.k}-${b.dataset.l}.jpg`;
   });
   const SIZES = ["S", "M", "L", "XL", "XXL"];
   const S = {
@@ -155,11 +159,10 @@
     sweat: '<path d="M66 36 L102 22 Q120 36 138 22 L174 36 L212 196 L190 202 L168 100 L168 224 L72 224 L72 100 L50 202 L28 196 Z"/><path d="M102 22 Q120 44 138 22"/><path d="M72 212 L168 212"/>'
   };
   const ITEMS = [
-    { k: "tee", img: "assets/og/LM-tee-caracal-EN.jpg", tag: "Any of the five designs", name: "OG Tee", sub: "Heavyweight cotton.", price: 250, colours: ["Black", "White"], fits: ["Fitted", "Oversized"], sizes: SIZES },
-    { k: "singlet", tag: "Any of the five designs", name: "OG Singlet", sub: "For the Dubai summer.", price: 200, colours: ["Black", "White"], sizes: SIZES },
-    { k: "hat", tag: "Embroidered logo", name: "OG Cap", sub: "Embroidered.", price: 200, colours: ["Black"], sizes: ["One size, adjustable"] },
-    { k: "hoodie", tag: "Any of the five designs", name: "OG Hoodie", sub: "Heavyweight fleece.", price: 350, colours: ["Black"], sizes: SIZES },
-    { k: "sweat", tag: "Artwork reveal soon", name: "OG Sweatshirt", sub: "Like Minds down the side.", price: 350, colours: ["Black"], sizes: SIZES }
+    { k: "tee", tag: "Any of the seven designs", name: "OG Tee", sub: "Heavyweight cotton.", price: 250, colours: ["Black", "White"], fits: ["Fitted", "Oversized"], sizes: SIZES },
+    { k: "singlet", tag: "Casting Tape or Masthead", name: "OG Singlet", sub: "For the Dubai summer.", price: 200, colours: ["Black", "White"], sizes: SIZES },
+    { k: "hoodie", tag: "Any of the seven designs", name: "OG Hoodie", sub: "Heavyweight fleece.", price: 350, colours: ["Black"], sizes: SIZES },
+    { k: "sweat", tag: "Masthead", name: "OG Sweater", sub: "Heavyweight crew neck.", price: 350, colours: ["Black"], sizes: SIZES }
   ];
   const chips = (a, cls = "") => a.map(x => `<i class="${cls}">${x}</i>`).join("");
   document.getElementById("items").innerHTML = ITEMS.map(t => `
