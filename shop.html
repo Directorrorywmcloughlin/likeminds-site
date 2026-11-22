@@ -3,275 +3,378 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>OG Pre-order · Like Minds</title>
-<meta name="description" content="Founding member merch. Pre-order only, made to order.">
+<title>The OG Run · Like Minds</title>
+<meta name="description" content="Founding member merch. Seven designs, pre-order only, made to order.">
 <meta name="robots" content="noindex">
 <meta name="theme-color" content="#262422">
 <link rel="icon" href="assets/logo-small.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,400;6..72,500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700&family=Newsreader:opsz,wght@6..72,400;6..72,500&family=Noto+Kufi+Arabic:wght@700&display=swap">
 <style>
   @font-face { font-family: "New Spirit"; src: url("assets/NewSpirit-SemiBold.woff2") format("woff2"); font-weight: 600; font-display: swap; }
-  :root { --paper: #262422; --raised: #2f2d2a; --ink: #eeefd7; --muted: #a9a69c; --rule: #3a3834; --red: #d84b4b; --red-text: #e8706a; --teal: #86a4a0; --black: #111110;
-    --display: "Inter Tight", system-ui, sans-serif; --serif: "Newsreader", Georgia, serif; color-scheme: dark; }
+  :root { --film: #262422; --paper: #eceae4; --ink: #111110; --cream: #eeefd7; --muted: #a9a69c; --muted-ink: #6b6861; --rule: #3a3834; --rule-ink: #cfccc3; --red: #d84b4b; --red-text: #e8706a; --maroon: #6b1d14; --blue: #0e1b28; --steel: #9db0c2; --black: #111110;
+    --display: "Inter Tight", system-ui, sans-serif; --serif: "Newsreader", Georgia, serif; --ar: "Noto Kufi Arabic", "Inter Tight", sans-serif; }
   * { box-sizing: border-box; }
-  html { -webkit-text-size-adjust: 100%; }
-  body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--serif); font-size: 18px; line-height: 1.5; -webkit-font-smoothing: antialiased; }
-  body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opacity: .07; z-index: 0; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
-  body > * { position: relative; z-index: 1; }
+  html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; scroll-padding-top: 64px; }
+  body { margin: 0; background: var(--film); color: var(--cream); font-family: var(--serif); font-size: 18px; line-height: 1.5; -webkit-font-smoothing: antialiased; }
   a { color: inherit; }
-  .wrap { max-width: 1200px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
-  header .wrap { display: flex; justify-content: space-between; align-items: center; padding-block: 20px; }
-  header img { height: 44px; width: auto; display: block; }
-  .label { font-family: var(--display); font-size: 13px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--red-text); margin: 0; }
-  .label.muted { color: var(--muted); }
-  h1, h2 { font-family: var(--display); font-weight: 600; letter-spacing: -.045em; line-height: .92; margin: 0; text-wrap: balance; }
-  h1 { font-size: clamp(48px, 9vw, 120px); }
-  h2 { font-size: clamp(28px, 3.4vw, 40px); }
-  .stop { color: var(--red); }
+  img { display: block; max-width: 100%; }
+  p, h1, h2, h3 { margin: 0; }
+  .wrap { max-width: 1240px; margin: 0 auto; padding-inline: max(20px, env(safe-area-inset-left, 0px)) max(20px, env(safe-area-inset-right, 0px)); }
+  .label { font-family: var(--display); font-size: 13px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; }
+  .red { color: var(--red); } .stop { color: var(--red); } .on-film .red { color: var(--red-text); }
   .brand { font-family: "New Spirit", Georgia, serif; font-weight: 600; }
-  p { margin: 0; }
-  .hero { padding-block: 40px 36px; display: grid; grid-template-columns: 7fr 5fr; gap: 32px 64px; align-items: end; border-bottom: 1px solid var(--rule); }
-  .hero .intro { font-size: 22px; line-height: 1.35; max-width: 36ch; }
-  .facts { display: grid; gap: 10px; font-family: var(--display); font-size: 15px; color: var(--muted); }
-  .facts b { color: var(--ink); font-weight: 600; }
-  @media (max-width: 860px) { .hero { grid-template-columns: 1fr; padding-block: 32px 40px; } }
+  h1, h2, h3 { font-family: var(--display); font-weight: 600; letter-spacing: -.045em; line-height: .92; text-wrap: balance; }
+  section { position: relative; }
+  .grain::before { content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .08; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+  .grain > * { position: relative; }
+  .on-paper { background: var(--paper); color: var(--ink); }
+  .on-film { background: var(--film); color: var(--cream); }
 
-  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1px; margin-top: 48px; }
-  .grid > * { box-shadow: 0 0 0 1px var(--rule); }
-  @media (max-width: 380px) { .grid { grid-template-columns: 1fr; } }
-  .item { background: var(--paper); padding: 28px 24px 32px; display: flex; flex-direction: column; gap: 18px; }
-  .art { aspect-ratio: 4 / 5; background: var(--black); display: grid; place-items: center; position: relative; overflow: hidden; }
-  .art svg { width: 72%; height: auto; }
-  .art .tag { position: absolute; left: 0; bottom: 0; font-family: var(--display); font-size: 11px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; background: var(--ink); color: var(--black); padding: 7px 10px; }
-  .item h2 .sub { display: block; font-family: var(--display); font-size: 15px; font-weight: 500; letter-spacing: 0; color: var(--muted); margin-top: 10px; line-height: 1.35; }
-  .opts { display: grid; gap: 8px; font-family: var(--display); font-size: 14px; }
-  .opts div { display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap; }
-  .opts dt { width: 64px; flex: none; color: var(--muted); text-transform: uppercase; letter-spacing: .14em; font-size: 12px; font-weight: 600; }
-  .opts dd { margin: 0; display: flex; gap: 6px; flex-wrap: wrap; }
-  .opts dd i { font-style: normal; border: 1px solid var(--muted); padding: 4px 9px; }
-  .opts dd i.fit { border-color: var(--teal); color: var(--teal); }
-  .note { justify-content: flex-end; }
-  .note .nt { color: var(--muted); font-size: 18px; max-width: 30ch; }
-  .buy { margin-top: auto; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-top: 6px; }
-  .price { font-family: var(--display); font-size: 26px; font-weight: 600; letter-spacing: -.02em; }
-  .price small { font-size: 13px; font-weight: 600; letter-spacing: .14em; color: var(--muted); margin-right: 6px; }
-  .btn { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; font-family: var(--display); font-size: 15px; font-weight: 600; padding: 0 24px; background: var(--red); color: #111110; text-decoration: none; border: 0; cursor: pointer; }
+  /* top bar */
+  .top { position: sticky; top: 0; z-index: 20; background: rgba(38,36,34,.94); backdrop-filter: blur(8px); border-bottom: 1px solid var(--rule); }
+  .top .wrap { display: flex; align-items: center; gap: 20px; height: 56px; }
+  .top img { height: 34px; width: auto; flex: none; }
+  .chap { display: flex; gap: 2px; overflow-x: auto; scrollbar-width: none; flex: 1; min-width: 0; }
+  .chap::-webkit-scrollbar { display: none; }
+  .chap a { flex: none; font-family: var(--display); font-size: 13px; font-weight: 600; color: var(--muted); text-decoration: none; padding: 0 10px; height: 56px; display: flex; align-items: center; border-bottom: 2px solid transparent; white-space: nowrap; }
+  .chap a:hover { color: var(--cream); }
+  .chap a.on { color: var(--cream); border-bottom-color: var(--red); }
+  .btn { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; font-family: var(--display); font-size: 15px; font-weight: 600; padding: 0 24px; background: var(--red); color: var(--black); text-decoration: none; border: 0; cursor: pointer; flex: none; }
   .btn:hover { background: #c94343; }
-  .btn[aria-disabled="true"] { background: transparent; color: var(--muted); border: 1px solid var(--rule); cursor: default; pointer-events: none; }
-  :is(a, button):focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+  .btn.sm { min-height: 40px; padding: 0 16px; font-size: 14px; }
+  .btn[aria-disabled="true"] { background: transparent; color: var(--muted); border: 1px solid currentColor; pointer-events: none; }
+  :is(a, button):focus-visible { outline: 2px solid currentColor; outline-offset: 2px; }
+  #joined { background: var(--cream); color: var(--ink); font-size: 17px; }
+  #joined .wrap { padding-block: 14px; }
 
-  .how { padding-block: 40px 64px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
-  .how h3 { font-family: var(--display); font-size: 15px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; margin: 0 0 10px; }
-  .how p { color: var(--muted); font-size: 17px; }
-  @media (max-width: 860px) { .how { grid-template-columns: 1fr; } }
-  footer { border-top: 1px solid var(--rule); margin-top: 64px; }
-  footer .wrap { padding-block: 40px; display: flex; flex-wrap: wrap; gap: 12px 28px; font-family: var(--display); font-size: 14px; color: var(--muted); }
-  footer a { display: inline-block; padding-block: 8px; color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--rule); }
+  /* cover */
+  .cover { display: grid; grid-template-columns: 1fr 1fr; min-height: min(86vh, 860px); }
+  .cover .ph { position: relative; overflow: hidden; background: var(--black); min-height: 320px; }
+  .cover .ph img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; }
+  .cover .tx { display: flex; flex-direction: column; justify-content: center; gap: 22px; padding: 56px clamp(20px, 6vw, 96px); }
+  .cover h1 { font-size: clamp(88px, 13vw, 190px); color: var(--red); letter-spacing: -.05em; }
+  .cover h1 span { color: var(--cream); }
+  .cover .stand { font-size: clamp(20px, 2vw, 26px); line-height: 1.35; max-width: 24ch; text-wrap: pretty; }
+  .cover .cta { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 8px; }
+  .ghost { display: inline-flex; align-items: center; min-height: 48px; padding: 0 20px; border: 1px solid var(--muted); font-family: var(--display); font-size: 15px; font-weight: 600; text-decoration: none; }
+  .ghost:hover { background: var(--cream); color: var(--black); border-color: var(--cream); }
 
-  .look { padding-block: 40px 8px; }
-  .facts4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; padding-block: 48px 0; font-family: var(--display); font-size: 15px; color: var(--muted); }
-  .facts4 b { display: block; color: var(--ink); font-weight: 600; margin-bottom: 4px; }
-  @media (max-width: 860px) { .facts4 { grid-template-columns: 1fr 1fr; } }
-  .wall { margin-top: 64px; }
-  .wall .row { display: flex; gap: 8px; overflow-x: auto; scroll-snap-type: x proximity; scrollbar-width: none; margin-top: 24px; padding-inline: max(16px, calc((100vw - 1200px) / 2 + 16px)); }
-  .wall .row::-webkit-scrollbar { display: none; }
-  .wall a { flex: none; height: clamp(180px, 24vw, 300px); aspect-ratio: 16 / 9; scroll-snap-align: center; overflow: hidden; background: var(--black); }
-  .wall a.t { aspect-ratio: 4 / 5; }
-  .wall img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .5s ease; }
-  .wall a:hover img { transform: scale(1.05); }
-  .dhead { display: flex; justify-content: space-between; align-items: end; gap: 16px 48px; flex-wrap: wrap; }
-  .dhead .nt, .note .nt { color: var(--muted); font-size: 18px; max-width: 46ch; text-wrap: pretty; }
-  .tabs { display: flex; gap: 10px; margin-top: 32px; overflow-x: auto; scrollbar-width: none; scroll-snap-type: x proximity; padding-bottom: 4px; }
-  .tabs::-webkit-scrollbar { display: none; }
-  .tabs button { flex: 1 0 auto; min-width: 132px; display: grid; grid-template-columns: 44px 1fr; gap: 10px; align-items: center; text-align: left; padding: 6px 12px 6px 6px; min-height: 56px; background: transparent; color: var(--muted); border: 1px solid var(--rule); font-family: var(--display); font-size: 14px; font-weight: 600; cursor: pointer; scroll-snap-align: start; transition: color .2s, border-color .2s, background .2s; }
-  .tabs button img { width: 44px; height: 44px; object-fit: cover; display: block; filter: saturate(.6); transition: filter .2s; }
-  .tabs button small { display: block; font-size: 11px; letter-spacing: .16em; color: var(--muted); font-weight: 600; }
-  .tabs button:hover { color: var(--ink); border-color: var(--muted); }
-  .tabs button[aria-selected="true"] { color: var(--black); background: var(--ink); border-color: var(--ink); }
-  .tabs button[aria-selected="true"] small { color: #55524b; }
-  .tabs button[aria-selected="true"] img { filter: none; }
-  .stage > * { min-width: 0; }
-  .stage { display: grid; grid-template-columns: minmax(0, 8fr) minmax(0, 4fr); gap: 32px; margin-top: 20px; align-items: start; }
-  .shot { position: relative; aspect-ratio: 16 / 9; background: var(--black); overflow: hidden; touch-action: pan-y; }
-  .shot img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity .5s ease, transform 6s ease-out; transform: scale(1.04); }
-  .shot img.on { opacity: 1; transform: scale(1); }
-  .shot img.tall { object-fit: contain; }
-  .ctl { display: flex; align-items: center; gap: 12px; margin-top: 12px; }
-  .ctl .nav { width: 48px; height: 48px; flex: none; background: transparent; color: var(--ink); border: 1px solid var(--muted); font-size: 20px; cursor: pointer; font-family: var(--display); }
-  .ctl .nav:hover { background: var(--ink); color: var(--black); }
-  .count { font-family: var(--display); font-size: 13px; font-weight: 600; letter-spacing: .16em; color: var(--muted); flex: none; min-width: 62px; text-align: center; }
-  .thumbs { display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none; flex: 1; min-width: 0; }
-  .thumbs::-webkit-scrollbar { display: none; }
-  .thumbs button { flex: none; width: 84px; height: 48px; padding: 0; border: 0; background: var(--black); cursor: pointer; opacity: .45; transition: opacity .2s; position: relative; }
-  .thumbs button img { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .thumbs button[aria-current="true"] { opacity: 1; outline: 2px solid var(--red); outline-offset: -2px; }
-  .thumbs button:hover { opacity: 1; }
-  .panel { display: grid; gap: 18px; }
-  .panel h3 { font-family: var(--display); font-size: clamp(34px, 3.6vw, 48px); font-weight: 600; letter-spacing: -.045em; line-height: .95; margin: 0; }
-  .panel .line { font-family: var(--display); font-size: 16px; color: var(--muted); }
-  .flat { display: grid; grid-template-columns: 132px 1fr; gap: 16px; align-items: end; }
-  .flat .ph { aspect-ratio: 1 / 1; background: var(--black); overflow: hidden; }
-  .flat .ph img { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .lang { display: flex; gap: 6px; flex-wrap: wrap; }
-  .lang button { font-family: var(--display); font-size: 13px; font-weight: 600; min-height: 40px; padding: 0 12px; background: transparent; color: var(--ink); border: 1px solid var(--muted); cursor: pointer; }
-  .lang button[aria-pressed="true"] { background: var(--ink); color: var(--black); border-color: var(--ink); }
-  .comes { display: grid; border-top: 1px solid var(--rule); }
-  .comes a { display: flex; justify-content: space-between; align-items: center; gap: 12px; min-height: 52px; padding: 0 2px; border-bottom: 1px solid var(--rule); font-family: var(--display); font-size: 16px; font-weight: 600; text-decoration: none; }
-  .comes a span { color: var(--muted); font-weight: 500; font-size: 14px; }
-  .comes a b { color: var(--red-text); font-weight: 600; font-size: 14px; }
-  .comes a:hover b { text-decoration: underline; }
-  .comes a.soon { pointer-events: none; }
-  .comes a.soon b { color: var(--muted); }
-  @media (max-width: 860px) { .stage { grid-template-columns: 1fr; gap: 24px; } .shot { aspect-ratio: 4 / 3; } .shot.tall { aspect-ratio: 4 / 5; } .shot.tall img.tall { object-fit: cover; } .ctl { flex-wrap: wrap; } .thumbs { flex-basis: 100%; order: 3; } .thumbs button { width: 72px; } }
-  @media (prefers-reduced-motion: reduce) { .shot img { transition: none; transform: none; } }
-  .art .tag { position: static; }
-  .item .art { aspect-ratio: 4 / 5; }
-  .item .tagl { font-family: var(--display); font-size: 11px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--muted); margin: -6px 0 0; }
-  .art img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  /* index */
+  .index { padding-block: 72px; border-top: 1px solid var(--rule); }
+  .ihead { display: flex; justify-content: space-between; align-items: end; gap: 16px 48px; flex-wrap: wrap; }
+  .ihead h2 { font-size: clamp(34px, 4.4vw, 60px); }
+  .ihead p { color: var(--muted); max-width: 40ch; text-wrap: pretty; }
+  .igrid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px; margin-top: 36px; }
+  .igrid2 { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px; margin-top: 12px; }
+  .icard { display: grid; gap: 12px; text-decoration: none; padding-bottom: 14px; border-bottom: 1px solid var(--rule); transition: border-color .2s; }
+  .icard .a { aspect-ratio: 1 / 1; background: var(--black); overflow: hidden; }
+  .icard .a img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s ease; }
+  .icard:hover .a img { transform: scale(1.06); }
+  .icard:hover { border-color: var(--red); }
+  .icard small { font-family: var(--display); font-size: 12px; font-weight: 600; letter-spacing: .18em; color: var(--red-text); }
+  .icard b { display: block; font-family: var(--display); font-size: 20px; font-weight: 600; letter-spacing: -.02em; line-height: 1.1; margin-top: 4px; }
+  .icard span { display: block; font-family: var(--display); font-size: 14px; color: var(--muted); margin-top: 4px; }
+  .isub { grid-column: 1 / -1; color: var(--muted); font-family: var(--display); font-size: 13px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; margin-top: 28px; }
+
+  /* founder */
+  .founder { display: grid; grid-template-columns: 1fr 1fr; }
+  .founder .ph { position: relative; min-height: 420px; background: var(--black); overflow: hidden; }
+  .founder .ph img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; }
+  .founder .tx { padding: clamp(48px, 8vw, 112px) clamp(20px, 6vw, 96px); display: grid; gap: 24px; align-content: center; }
+  .founder h2 { font-size: clamp(56px, 7vw, 104px); color: var(--red); }
+  .founder h2 span { color: var(--ink); }
+  .founder .note { font-size: clamp(19px, 1.7vw, 24px); line-height: 1.45; max-width: 34ch; display: grid; gap: 1em; text-wrap: pretty; }
+  .founder .sig { width: min(320px, 70%); }
+  .founder .name { color: var(--muted-ink); }
+
+  /* statement */
+  .state { background: var(--maroon); color: #f7f6f2; padding-block: clamp(64px, 9vw, 128px); }
+  .state .wrap { display: grid; grid-template-columns: 5fr 7fr; gap: 32px 64px; align-items: end; }
+  .state .num { font-family: var(--display); font-weight: 300; font-size: clamp(160px, 24vw, 330px); line-height: .8; letter-spacing: -.04em; }
+  .state h2 { font-size: clamp(44px, 6.4vw, 96px); }
+  .state h2 span { color: var(--cream); }
+  .state .sent { font-size: clamp(19px, 1.7vw, 24px); line-height: 1.4; max-width: 38ch; margin-top: 24px; text-wrap: pretty; }
+  .state .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 36px; padding-top: 20px; border-top: 1px solid rgba(247,246,242,.35); max-width: 620px; }
+  .state .cols p + p { font-size: 19px; line-height: 1.35; margin-top: 8px; }
+
+  /* chapter */
+  .story { padding-block: clamp(56px, 8vw, 112px) clamp(48px, 6vw, 80px); }
+  .shead { display: grid; grid-template-columns: 1fr 1fr; gap: 24px 48px; align-items: end; }
+  .tag { color: var(--red); }
+  .tagline { font-size: clamp(56px, 8.4vw, 124px); color: var(--red); margin-top: 18px; }
+  .arline { font-family: var(--ar); font-weight: 700; font-size: clamp(50px, 7.4vw, 108px); line-height: 1.2; color: var(--red); direction: rtl; text-align: right; }
+  .intro { font-family: var(--display); font-weight: 600; font-size: clamp(22px, 2.4vw, 32px); letter-spacing: -.02em; line-height: 1.15; margin-top: 40px; max-width: 24ch; text-wrap: balance; }
+  .sbody { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px 48px; margin-top: 32px; padding-top: 28px; border-top: 1px solid var(--rule-ink); }
+  .sbody .bio { font-size: 19px; line-height: 1.5; text-wrap: pretty; }
+  .sbody .bio b { font-family: var(--display); font-weight: 700; font-size: 15px; letter-spacing: .06em; }
+  .place img { width: 100%; aspect-ratio: 728 / 440; object-fit: cover; }
+  .place .k { color: var(--muted-ink); margin-top: 14px; font-size: 12px; }
+  .place .v { font-family: var(--display); font-size: 20px; font-weight: 600; letter-spacing: -.02em; margin-top: 4px; }
+  .spec { display: grid; gap: 18px; align-content: start; }
+  .spec .k { color: var(--muted-ink); font-size: 12px; }
+  .spec .v { font-family: var(--display); font-size: 20px; font-weight: 600; letter-spacing: -.02em; margin-top: 4px; }
+
+  .worn { padding-block: 0 clamp(56px, 7vw, 96px); }
+  .worn .hero { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; background: var(--black); }
+  .wgrid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); gap: 12px; margin-top: 12px; }
+  .flat { background: #1e1d1b; position: relative; display: grid; grid-template-rows: 1fr auto; }
+  .flat img { width: 100%; height: 100%; object-fit: contain; aspect-ratio: 1 / 1; transition: opacity .25s; }
+  .lang { display: flex; gap: 6px; padding: 12px; }
+  .lang button { flex: 1; font-family: var(--display); font-size: 13px; font-weight: 600; min-height: 40px; padding: 0 12px; background: transparent; color: var(--cream); border: 1px solid var(--muted); cursor: pointer; }
+  .lang button[aria-pressed="true"] { background: var(--cream); color: var(--black); border-color: var(--cream); }
+  .lang p { font-family: var(--display); font-size: 12px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); padding: 10px 0; }
+  .shots { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; align-content: start; }
+  .shots img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; background: var(--black); }
+  .shots img:last-child:nth-child(odd) { grid-column: span 2; aspect-ratio: 32 / 9; object-position: 50% 35%; }
+  .tall4 { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+  .tall4 img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; background: var(--black); }
+  .buy { display: flex; align-items: center; justify-content: space-between; gap: 16px 32px; flex-wrap: wrap; margin-top: 28px; padding-top: 24px; border-top: 1px solid var(--rule); }
+  .buy h3 { font-size: clamp(24px, 2.6vw, 34px); }
+  .buy .row { display: flex; gap: 10px; flex-wrap: wrap; }
+  .buy .row a { display: inline-flex; align-items: center; gap: 10px; min-height: 48px; padding: 0 18px; font-family: var(--display); font-size: 15px; font-weight: 600; text-decoration: none; background: var(--red); color: var(--black); }
+  .buy .row a span { font-weight: 500; opacity: .75; }
+  .buy .row a:hover { background: #c94343; }
+  .buy .row a.soon { background: transparent; color: var(--muted); border: 1px solid var(--rule); pointer-events: none; }
+
+  /* splitter + get */
+  .split { background: var(--blue); color: var(--cream); padding-block: clamp(72px, 10vw, 140px); }
+  .split .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 32px 64px; align-items: end; }
+  .split .label { color: var(--steel); }
+  .split h2 { font-size: clamp(64px, 10vw, 150px); margin-top: 18px; }
+  .split .sent { font-size: clamp(19px, 1.7vw, 24px); line-height: 1.4; max-width: 36ch; text-wrap: pretty; }
+  .get { background: var(--blue); color: var(--cream); padding-block: clamp(64px, 8vw, 112px); }
+  .get .label { color: var(--steel); }
+  .get h2 { font-size: clamp(72px, 11vw, 168px); margin-top: 14px; }
+  .ghead { display: grid; grid-template-columns: 1fr 1fr; gap: 24px 64px; align-items: end; }
+  .ghead .lead { font-size: clamp(20px, 1.9vw, 26px); line-height: 1.35; max-width: 30ch; text-wrap: pretty; }
+  .items { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin-top: 48px; }
+  .item { display: flex; flex-direction: column; gap: 14px; }
+  .item .art { aspect-ratio: 4 / 5; background: var(--black); overflow: hidden; }
+  .item .art img { width: 100%; height: 100%; object-fit: cover; }
+  .item .t { color: var(--steel); font-size: 11px; }
+  .item h3 { font-size: 30px; }
+  .item h3 .sub { display: block; font-size: 15px; font-weight: 500; letter-spacing: 0; color: var(--steel); margin-top: 8px; line-height: 1.3; }
+  .opts { display: grid; gap: 6px; font-family: var(--display); font-size: 14px; margin: 0; }
+  .opts div { display: flex; gap: 10px; }
+  .opts dt { width: 60px; flex: none; color: var(--steel); text-transform: uppercase; letter-spacing: .14em; font-size: 11px; font-weight: 600; padding-top: 2px; }
+  .opts dd { margin: 0; }
+  .item .pay { margin-top: auto; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding-top: 8px; }
+  .price { font-family: var(--display); font-size: 24px; font-weight: 600; letter-spacing: -.02em; }
+  .price small { font-size: 12px; font-weight: 600; letter-spacing: .14em; color: var(--steel); margin-right: 6px; }
+  .facts { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-top: 56px; padding-top: 28px; border-top: 1px solid rgba(157,176,194,.35); font-family: var(--display); font-size: 15px; color: var(--steel); }
+  .facts b { display: block; color: var(--cream); font-weight: 600; margin-bottom: 4px; }
+  .fine { margin-top: 28px; font-family: var(--display); font-size: 13px; color: var(--steel); max-width: 80ch; }
+  footer { border-top: 1px solid var(--rule); }
+  footer .wrap { padding-block: 36px; display: flex; flex-wrap: wrap; gap: 12px 28px; font-family: var(--display); font-size: 14px; color: var(--muted); }
+  footer a { display: inline-block; padding-block: 8px; color: var(--cream); text-decoration: none; border-bottom: 1px solid var(--rule); }
+
+  .rv { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
+  .rv.in { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) { .rv { opacity: 1; transform: none; transition: none; } html { scroll-behavior: auto; } }
+
+  @media (max-width: 900px) {
+    .cover, .founder { grid-template-columns: 1fr; }
+    .cover { min-height: 0; } .cover .ph { aspect-ratio: 4 / 5; } .cover .tx { padding-block: 40px 48px; }
+    .founder .ph { aspect-ratio: 4 / 5; }
+    .igrid, .igrid2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .state .wrap, .shead, .split .wrap, .ghead { grid-template-columns: 1fr; }
+    .arline { text-align: left; direction: rtl; }
+    .sbody { grid-template-columns: 1fr; gap: 24px; }
+    .wgrid { grid-template-columns: 1fr; }
+    .flat img { aspect-ratio: 1 / 1; }
+    .worn .hero { aspect-ratio: 4 / 3; }
+    .worn > .wrap { padding-inline: 0; } .worn .buy { padding-inline: 20px; }
+    .tall4 { grid-template-columns: 1fr 1fr; }
+    .items { grid-template-columns: 1fr 1fr; }
+    .facts { grid-template-columns: 1fr 1fr; }
+    .top .btn { display: none; }
+  }
+  @media (max-width: 520px) { .items { grid-template-columns: 1fr; } .shots { grid-template-columns: 1fr; } .shots img:last-child:nth-child(odd) { grid-column: auto; aspect-ratio: 16 / 9; } }
 </style>
 </head>
 <body>
-<header><div class="wrap"><a href="/" aria-label="Like Minds home"><img src="assets/logo-uae.png" alt="Like Minds, UAE's creative community"></a><p class="label muted">OG pre-order</p></div></header>
+<div class="top"><div class="wrap"><a href="/" aria-label="Like Minds home"><img src="assets/logo-uae.png" alt="Like Minds, UAE's creative community"></a><nav class="chap" id="chap" aria-label="Designs"></nav><a class="btn sm" href="#get">Get yours</a></div></div>
+<div id="joined" hidden><div class="wrap"><b>Application received.</b> We'll look at your work and write to you. While you wait, the OG run is open.</div></div>
 
-<main class="wrap">
-  <p id="joined" hidden style="margin:24px 0 0;padding:16px 20px;border:1px solid currentColor;font-size:18px"><b>Application received.</b> We'll look at your work and write to you. While you wait, the OG run is open.</p>
-  <section class="hero">
-    <div>
-      <p class="label">Founding members only</p>
-      <h1 style="margin-top:18px">The OG run<span class="stop">.</span></h1>
+<main>
+  <section class="cover on-film grain">
+    <div class="ph"><img src="assets/og/lb/oryx-p.jpg" alt="A man dancing at a club night in the oryx design in Arabic"></div>
+    <div class="tx">
+      <p class="label red">The OG run</p>
+      <h1>flash<span>.</span></h1>
+      <p class="stand">A look book of designs to celebrate and recognise the OGs of <span class="brand">Like Minds</span>, with this exclusive&nbsp;run.</p>
+      <div class="cta"><a class="btn" href="#get">Get yours</a><a class="ghost" href="#designs">See the seven designs ↓</a></div>
     </div>
-    <p class="intro">You were here first. This is the merch for the people who got <span class="brand">Like Minds</span> off the ground. Made to order, one run&nbsp;only.</p>
   </section>
 
-  <section class="look" id="look" aria-labelledby="look-h">
-    <div class="dhead"><h2 id="look-h">Seven designs. Tap&nbsp;through<span class="stop">.</span></h2><p class="nt">Every shot is from the OG Look Book. Pick a design, flick through how it wears, then pre-order the piece you want.</p></div>
-    <div class="tabs" id="tabs" role="tablist" aria-label="Designs"></div>
-    <div class="stage">
-      <div>
-        <div class="shot" id="shot" tabindex="0" aria-roledescription="carousel" aria-label="Look Book photos"><img alt=""><img alt=""></div>
-        <div class="ctl"><button class="nav" id="prev" type="button" aria-label="Previous photo">←</button><span class="count" id="count" aria-live="polite"></span><button class="nav" id="next" type="button" aria-label="Next photo">→</button><div class="thumbs" id="thumbs"></div></div>
+  <section class="index on-film grain" id="designs" aria-labelledby="ix-h">
+    <div class="wrap">
+      <div class="ihead rv"><h2 id="ix-h">Seven designs<span class="stop">.</span></h2><p>Five animals of this place, drawn as old-school tattoo flash. Then two with no animals at all. Tap one to read its&nbsp;story.</p></div>
+      <p class="isub rv">The animal run</p>
+      <div class="igrid rv" id="ix5"></div>
+      <p class="isub rv">OG certified</p>
+      <div class="igrid2 rv" id="ix2"></div>
+    </div>
+  </section>
+
+  <section class="founder on-paper" id="note" aria-labelledby="fn-h">
+    <div class="ph"><img src="assets/og/lb/rory.jpg" alt="Black and white portrait of Rory McLoughlin in glasses, looking off to the side" loading="lazy"></div>
+    <div class="tx rv">
+      <p class="label red">Founder's note</p>
+      <h2 id="fn-h">Four years<br>in<span>.</span></h2>
+      <div class="note">
+        <p><span class="brand">Like Minds</span> has been running for four years now.</p>
+        <p>I wanted to create a series of designs that recognise my own personal punk rock and hardcore roots and how that's transcribed into the nature of the <span class="brand">Like Minds</span> community. The artwork in this merch series is inspired by that subculture while also creating a sense of place through the flora and fauna&nbsp;featured.</p>
+        <p>For many, including myself, <span class="brand">Like Minds</span> has created a sense of&nbsp;belonging.</p>
       </div>
-      <div class="panel" id="panel" aria-live="polite"></div>
+      <img class="sig" src="assets/og/lb/sig.png" alt="Rory McLoughlin's signature" loading="lazy">
+      <p class="label name">Rory McLoughlin · Founder, Like Minds</p>
     </div>
   </section>
 
-  <section class="grid" id="items" aria-label="OG merch"></section>
-
-  <section class="facts4" aria-label="How the run works">
-    <p><b>Pre-order only.</b> Nothing is printed until the run closes.</p>
-    <p><b>Pay now, wear later.</b> We email your delivery date once production is booked.</p>
-    <p><b>Pick up or delivery.</b> Collect free at a <span class="brand">Like Minds</span> night, or UAE delivery for AED&nbsp;25.</p>
-    <p><b>Run closes Wednesday 25&nbsp;November.</b> After that, this artwork isn't made again.</p>
+  <section class="state grain" aria-labelledby="st-h">
+    <div class="wrap">
+      <p class="num rv" aria-hidden="true">05</p>
+      <div class="rv">
+        <p class="label">The animal run</p>
+        <h2 id="st-h" style="margin-top:16px">Five animals.<br>One place<span>.</span></h2>
+        <p class="sent">Every animal in the run belongs to the UAE, and so does everything growing around it. Flame Tree, Tribulus Omanense, Bougainvillea, Ghaf. All drawn as old-school tattoo flash, to give a sense of place and&nbsp;belonging.</p>
+        <div class="cols"><div><p class="label">Two languages</p><p>Every animal comes in English and in&nbsp;Arabic.</p></div><div><p class="label">Two colours</p><p>Every design sits on black and on&nbsp;white.</p></div></div>
+      </div>
+    </div>
   </section>
 
-  <section class="how" aria-label="How the pre-order works">
-    <div><h3>1. Pre-order</h3><p>Tap Pre-order, then choose your design, colour, fit and size at checkout. Pay securely through Stripe and you'll get a receipt by email.</p></div>
-    <div><h3>2. We make it</h3><p>When the run closes we book production based on what's ordered. Only what's ordered gets made.</p></div>
-    <div><h3>3. You wear it</h3><p>We email your delivery date. Collect at a night or we send it. Full details in the <a href="terms.html">pre-order terms</a>.</p></div>
+  <div id="chapters"></div>
+
+  <section class="get grain" id="get" aria-labelledby="get-h">
+    <div class="wrap">
+      <div class="ghead rv"><div><p class="label">The pre-order</p><h2 id="get-h">get<br>yours<span class="stop">.</span></h2></div><p class="lead">Pick a piece. You choose your design, language, colour and size at checkout. Made to order, one run&nbsp;only.</p></div>
+      <div class="items rv" id="items"></div>
+      <div class="facts rv">
+        <p><b>Pre-order only.</b> Nothing is printed until the run closes.</p>
+        <p><b>Pay now, wear later.</b> We email your delivery date once production is booked.</p>
+        <p><b>Pick up or delivery.</b> Collect free at a <span class="brand">Like Minds</span> night, or UAE delivery for AED&nbsp;25.</p>
+        <p><b>Run closes Wednesday 25&nbsp;November.</b> After that, this artwork isn't made again.</p>
+      </div>
+      <p class="fine">Fitted runs true to size, oversized is cut big and boxy. The photographs here are mock-ups, so print size and placement may vary slightly on the finished piece. Full details in the <a href="terms.html">pre-order terms</a>. Questions? <a href="mailto:hello@likeminds.ae">hello@likeminds.ae</a></p>
+    </div>
   </section>
 </main>
-
-<section class="wall" aria-labelledby="wall-h"><div class="wrap dhead"><h2 id="wall-h">From the Look&nbsp;Book<span class="stop">.</span></h2><p class="nt">Swipe through. Tap a shot to open that design.</p></div><div class="row" id="wall"></div></section>
-
 
 <footer><div class="wrap"><a href="/">likeminds.ae</a><a href="terms.html">Pre-order terms and returns</a><a href="mailto:hello@likeminds.ae">hello@likeminds.ae</a><span style="padding-block:8px">Like Minds Global FZ-LLC · Ras Al Khaimah, UAE</span></div></footer>
 
 <script>
 (() => {
   if (new URLSearchParams(location.search).has("joined")) document.getElementById("joined").hidden = false;
-  // Paste each Stripe payment link here. An empty link shows "Opens soon".
-  const PAY = { tee: "https://buy.stripe.com/00w3co3Yv1YQ46s7hQcfK00", singlet: "", hat: "https://buy.stripe.com/14AbIU1Qn0UMbyU8lUcfK03", hoodie: "https://buy.stripe.com/7sYfZa8eL0UMcCYeKicfK02", sweat: "" };
-  // Flip to true once Stripe checkout lists Casting Tape and Masthead, and restore the singlet link: https://buy.stripe.com/eVq6oA52z1YQ8mI31AcfK01
+  // Stripe payment links. An empty link shows "Opens soon".
+  // Flip NEW_LIVE to true once Stripe checkout lists Casting Tape and Masthead, and restore the singlet link: https://buy.stripe.com/eVq6oA52z1YQ8mI31AcfK01
   const NEW_LIVE = false;
-  const DESIGNS = [
-    { k: "caracal", name: "Arabian Caracal", en: "Fiercely Creative", ar: "جرأة الإبداع", shots: ["caracal-s2", "caracal-f", "caracal-e", "caracal-s1", "caracal-s3"] },
-    { k: "falcon", name: "Falcon", en: "Locked In", ar: "عين على الهدف", shots: ["falcon-f", "falcon-s1", "falcon-e", "falcon-s3", "falcon-s2"] },
-    { k: "hamour", name: "Hamour", en: "Feed the Mind", ar: "غذاء العقل", shots: ["hamour-p2", "hamour-s1", "hamour-kebab", "hamour-e", "hamour-f", "hamour-s2"] },
-    { k: "fox", name: "Desert Fox", en: "Crafty Muse", ar: "فطنة وإلهام", shots: ["fox-s3", "fox-tw", "fox-e", "fox-s1", "fox-f", "fox-s2"] },
-    { k: "oryx", name: "Arabian Oryx", en: "Steady Hands", ar: "ثابت الخطى", shots: ["oryx-f", "oryx-s1", "oryx-e", "oryx-s2"] },
-    { k: "tape", name: "Casting Tape", en: "Original Cast & Crew", one: true, shots: ["tape-s2", "tape-e", "tape-f", "tape-s1"], on: ["tee", "singlet", "hoodie"] },
-    { k: "masthead", name: "Masthead", en: "Circa 2022", one: true, shots: ["masthead-sweater", "masthead-skater", "masthead-cafe", "masthead-tee"], tall: true, on: ["tee", "singlet", "hoodie", "sweat"] }
+  const PAY = { tee: "https://buy.stripe.com/00w3co3Yv1YQ46s7hQcfK00", singlet: "", hoodie: "https://buy.stripe.com/7sYfZa8eL0UMcCYeKicfK02", sweat: "" };
+  const G = { tee: ["OG Tee", 250], singlet: ["OG Singlet", 200], hoodie: ["OG Hoodie", 350], sweat: ["OG Sweater", 350] };
+  const D = [
+    { k: "caracal", nav: "Caracal", name: "Arabian Caracal", tag: ["Fiercely", "creative."], ar: ["جرأة", "الإبداع"], intro: "The mountain cat almost nobody sees.",
+      a: ["THE ARABIAN CARACAL", "lives in the mountains of the UAE and almost nobody sees one. It hunts alone, mostly at night. From a standing start it can take a bird out of the air."],
+      b: ["WE DREW IT", "for the people who work the same way. Quiet for weeks, then all teeth when it counts. The red flowers come from the Flame Tree, another symbol of connection to this place we call home."],
+      place: "Flame Tree", flora: "Flame Trees in bloom by the Dubai Frame", shots: ["caracal-s2", "caracal-f", "caracal-e", "caracal-s1", "caracal-s3"] },
+    { k: "falcon", nav: "Falcon", name: "Falcon", tag: ["Locked", "in."], ar: ["عين على", "الهدف"], intro: "The bird that never loses the target.",
+      a: ["NOTHING HERE", "says focus like a falcon. It picks one target from a long way up and commits. No second guess. No looking around to see what everyone else is doing."],
+      b: ["OURS SPREADS", "its wings in front of a red sun, over yellow Tribulus Omanense, the national flower. A fitting partner for the national bird. It is for the edit that runs past midnight, the last take and the pitch you only get once."],
+      place: "Tribulus Omanense", flora: "A yellow Tribulus Omanense flower in the sand", shots: ["falcon-f", "falcon-s1", "falcon-e", "falcon-s3", "falcon-s2"] },
+    { k: "hamour", nav: "Hamour", name: "Hamour", tag: ["Feed the", "mind."], ar: ["غذاء", "العقل"], intro: "The fish on every table in the Gulf.",
+      a: ["ASK ANYONE", "here to name a fish and they will say hamour. It is the one on the grill, the one on the menu and the one somebody’s uncle swears he caught bigger."],
+      b: ["OURS LEAPS", "out of the waves above an oyster and its pearl, a nod to the divers this coast grew up on. Good ideas need feeding, and so do the people who have them."],
+      place: "Oysters and pearls", flora: "A plate of Dibba oysters being shucked", shots: ["hamour-p2", "hamour-kebab", "hamour-s1", "hamour-e", "hamour-s2"] },
+    { k: "fox", nav: "Desert Fox", name: "Desert Fox", tag: ["Crafty", "muse."], ar: ["فطنة", "وإلهام"], intro: "The night shift of the desert.",
+      a: ["THE DESERT FOX", "comes out when the heat drops. Big ears, light feet and always one move ahead. It gets by on wit, not size, and it is rarely where you last saw it."],
+      b: ["OURS IS CURLED", "inside a crescent moon, wrapped in Bougainvillea, Desert Rose and Senna. Bougainvillea climbs a wall in every neighbourhood here. It is for the night owls and the fixers who find a way when the plan falls over."],
+      place: "Bougainvillea, Desert Rose, Senna", flora: "Bougainvillea in many colours, a pink Desert Rose and yellow Senna flowers", shots: ["fox-tw", "fox-s3", "fox-e", "fox-s1", "fox-f"] },
+    { k: "oryx", nav: "Oryx", name: "Arabian Oryx", tag: ["Steady", "hands."], ar: ["ثابت", "الخطى"], intro: "The one that came back.",
+      a: ["THE ARABIAN ORYX", "is the national animal of the UAE. It was gone from the wild once. Then it came back. It is calm, it is tough and it does not waste a step when the heat is on."],
+      b: ["OURS STANDS", "in front of a red sun, framed by branches of Ghaf, the national tree of the UAE. The Ghaf holds on where little else will. It is for the producers, the first ADs and every steady hand on set."],
+      place: "Ghaf, Date Palm", flora: "A Ghaf branch and a date palm heavy with dates", shots: ["oryx-f", "oryx-s1", "oryx-e", "oryx-s2"] },
+    { k: "tape", nav: "Casting Tape", name: "Casting Tape", one: true, tag: ["Original", "cast & crew."], intro: "The tape we started recording in 2022.",
+      a: ["EVERY SCENE", "starts with a casting call. Ours went out in October 2022. One invite, one room and whoever turned up."],
+      b: ["THIS IS THAT TAPE.", "Labelled by hand, S01E01, still in the machine. It is for the original cast and crew. The people who were here before there was a here."],
+      shots: ["tape-s2", "tape-e", "tape-f", "tape-s1"], on: ["tee", "singlet", "hoodie"] },
+    { k: "masthead", nav: "Masthead", name: "Masthead", one: true, tall: true, tag: ["The", "masthead."], intro: "Circa 2022.",
+      a: ["ONE HEAVY TITLE", "across the chest, set in New Spirit."],
+      b: ["BEEN HERE", "since I’ve wanted to."],
+      shots: ["masthead-sweater", "masthead-skater", "masthead-cafe", "masthead-tee"], on: ["tee", "singlet", "hoodie", "sweat"] }
   ];
-  const GARMENT = { tee: ["OG Tee", 250], singlet: ["OG Singlet", 200], hoodie: ["OG Hoodie", 350], sweat: ["OG Sweater", 350] };
   const $ = id => document.getElementById(id);
   const LB = n => `assets/og/lb/${n}.jpg`;
   const art = (d, l) => `assets/og/LM-art-${d.k}${d.one ? "" : "-" + l}.jpg`;
-  const tabs = $("tabs"), shot = $("shot"), layers = shot.querySelectorAll("img");
-  let di = 0, si = 0, top = 0, lang = "EN", timer = null, auto = !matchMedia("(prefers-reduced-motion: reduce)").matches;
-  tabs.innerHTML = DESIGNS.map((d, i) => `<button type="button" role="tab" aria-selected="false" data-i="${i}"><img src="${art(d, "EN")}" alt=""><span><small>0${i + 1}</small>${d.name}</span></button>`).join("");
-  function show(n) {
-    const d = DESIGNS[di]; si = (n + d.shots.length) % d.shots.length;
-    const img = layers[top ^= 1], old = layers[top ^ 1];
-    img.className = d.tall ? "tall" : ""; shot.classList.toggle("tall", !!d.tall); img.src = LB(d.shots[si]); img.alt = `${d.name} design, worn. Photo ${si + 1} of ${d.shots.length}`;
-    const go = () => { img.classList.add("on"); old.classList.remove("on"); };
-    img.complete ? requestAnimationFrame(go) : (img.onload = go);
-    $("count").textContent = `${String(si + 1).padStart(2, "0")} / ${String(d.shots.length).padStart(2, "0")}`;
-    $("thumbs").querySelectorAll("button").forEach((b, i) => { b.setAttribute("aria-current", i === si); if (i === si && b.scrollIntoView) b.parentNode.scrollTo({ left: b.offsetLeft - 100, behavior: "smooth" }); });
-    new Image().src = LB(d.shots[(si + 1) % d.shots.length]);
-  }
-  function pick(i, user) {
-    di = (i + DESIGNS.length) % DESIGNS.length; const d = DESIGNS[di]; lang = "EN";
-    tabs.querySelectorAll("button").forEach((b, n) => { b.setAttribute("aria-selected", n === di); if (n === di && user) tabs.scrollTo({ left: b.offsetLeft - 16, behavior: "smooth" }); });
-    $("thumbs").innerHTML = d.shots.map((s, n) => `<button type="button" data-n="${n}" aria-label="Photo ${n + 1}"><img src="assets/og/lb/${s}-t.jpg" alt="" loading="lazy"></button>`).join("");
-    $("panel").innerHTML = `
-      <p class="label">Design 0${di + 1} of 07</p>
-      <div><h3>${d.name}<span class="stop">.</span></h3><p class="line" style="margin-top:10px">${d.en}${d.ar ? ` · <bdi lang="ar" dir="rtl">${d.ar}</bdi>` : ""}</p></div>
-      <div class="flat"><div class="ph"><img id="flat" src="${art(d, "EN")}" alt="${d.name} artwork, flat"></div>
-        ${d.one ? `<p class="label muted" style="letter-spacing:.14em;font-size:12px">English print</p>` : `<div class="lang" role="group" aria-label="Print language"><button type="button" aria-pressed="true" data-l="EN">English</button><button type="button" aria-pressed="false" data-l="AR">Arabic</button></div>`}</div>
-      <div class="comes">${(d.on || ["tee", "hoodie"]).map(g => `<a ${PAY[g] && (NEW_LIVE || !d.one) ? `href="${PAY[g]}" rel="noopener"` : `class="soon"`}>${GARMENT[g][0]} <span>AED ${GARMENT[g][1]}</span><b>${PAY[g] && (NEW_LIVE || !d.one) ? "Pre-order →" : "Opens soon"}</b></a>`).join("")}</div>
-      <p class="line" style="font-size:14px">You choose design, colour and size at checkout.</p>`;
-    show(0);
-    if (user) history.replaceState(null, "", "#" + d.k);
-  }
-  const stop = () => { auto = false; clearInterval(timer); };
-  tabs.addEventListener("click", e => { const b = e.target.closest("button"); if (b) { stop(); pick(+b.dataset.i, true); } });
-  $("thumbs").addEventListener("click", e => { const b = e.target.closest("button"); if (b) { stop(); show(+b.dataset.n); } });
-  $("prev").onclick = () => { stop(); show(si - 1); };
-  $("next").onclick = () => { stop(); show(si + 1); };
-  shot.addEventListener("keydown", e => { if (e.key === "ArrowRight") { stop(); show(si + 1); } if (e.key === "ArrowLeft") { stop(); show(si - 1); } });
-  let x0 = null;
-  shot.addEventListener("pointerdown", e => { x0 = e.clientX; });
-  shot.addEventListener("pointerup", e => { if (x0 === null) return; const dx = e.clientX - x0; x0 = null; stop(); show(si + (Math.abs(dx) < 30 ? 1 : dx < 0 ? 1 : -1)); });
-  $("panel").addEventListener("click", e => {
+  const live = (d, g) => PAY[g] && (NEW_LIVE || !d.one);
+  const no = i => String(i + 1).padStart(2, "0");
+
+  $("chap").innerHTML = D.map(d => `<a href="#${d.k}">${d.nav}</a>`).join("");
+  const card = (d, i) => `<a class="icard" href="#${d.k}"><div class="a"><img src="${art(d, "EN")}" alt="${d.name} artwork" loading="lazy"></div><div><small>${no(i)}</small><b>${d.name}</b><span>${d.tag.join(" ")}</span></div></a>`;
+  $("ix5").innerHTML = D.slice(0, 5).map(card).join("");
+  $("ix2").innerHTML = D.slice(5).map((d, i) => card(d, i + 5)).join("");
+
+  const split = `<section class="split grain" aria-labelledby="sp-h"><div class="wrap"><div class="rv"><p class="label">Designs 06 &amp; 07</p><h2 id="sp-h">OG<br>certified<span class="stop">.</span></h2></div><p class="sent rv">The last two designs have no animals. They take their cue from skate mags like Thrasher. One heavy title over one object. Our casting tape from 2022, and our own name set as a&nbsp;masthead.</p></div></section>`;
+  $("chapters").innerHTML = D.map((d, i) => `${i === 5 ? split : ""}
+  <section class="story on-paper" id="${d.k}" aria-labelledby="h-${d.k}">
+    <div class="wrap">
+      <div class="shead rv">
+        <div><p class="label tag">Design ${no(i)} / ${d.name}</p><h2 class="tagline" id="h-${d.k}">${d.tag.join("<br>")}</h2></div>
+        ${d.ar ? `<p class="arline" lang="ar" dir="rtl">${d.ar.join("<br>")}</p>` : ""}
+      </div>
+      <p class="intro rv">${d.intro}</p>
+      <div class="sbody rv">
+        <p class="bio"><b>${d.a[0]}</b> ${d.a[1]}</p>
+        <p class="bio"><b>${d.b[0]}</b> ${d.b[1]}</p>
+        ${d.place ? `<div class="place"><img src="${LB("flora-" + d.k)}" alt="${d.flora}" loading="lazy"><p class="label k">Of this place</p><p class="v">${d.place}</p></div>` : `<div class="spec"><div><p class="label k">Languages</p><p class="v">English</p></div><div><p class="label k">Colours</p><p class="v">Black and white</p></div></div>`}
+      </div>
+    </div>
+  </section>
+  <section class="worn on-film grain" aria-label="${d.name}, worn">
+    <div class="wrap">
+      ${d.tall ? `<div class="wgrid rv" style="margin-top:0"><div class="flat" data-k="${i}"${d.k === "tape" ? ` style="background:#111"` : ""}><img src="${art(d, "EN")}" alt="${d.name} artwork, flat" loading="lazy"><div class="lang"><p>English print</p></div></div><div class="tall4" style="grid-template-columns:repeat(2,minmax(0,1fr))">${d.shots.map(s => `<img src="${LB(s)}" alt="${d.name} design, worn" loading="lazy">`).join("")}</div></div>` : `
+      <img class="hero rv" src="${LB(d.shots[0])}" alt="${d.name} design, worn" loading="lazy">
+      <div class="wgrid rv">
+        <div class="flat" data-k="${i}"${d.k === "tape" ? ` style="background:#111"` : ""}><img src="${art(d, "EN")}" alt="${d.name} artwork, flat" loading="lazy">
+          <div class="lang"${d.one ? "" : ` role="group" aria-label="${d.name} print language"`}>${d.one ? `<p>English print</p>` : `<button type="button" aria-pressed="true" data-l="EN">English</button><button type="button" aria-pressed="false" data-l="AR">عربي</button>`}</div></div>
+        <div class="shots">${d.shots.slice(1).map(s => `<img src="${LB(s)}" alt="${d.name} design, worn" loading="lazy">`).join("")}</div>
+      </div>`}
+      <div class="buy rv"><h3>${d.name}<span class="stop">.</span></h3><div class="row">${(d.on || ["tee", "hoodie"]).map(g => `<a ${live(d, g) ? `href="${PAY[g]}" rel="noopener"` : `class="soon"`}>${G[g][0]} <span>${live(d, g) ? "AED " + G[g][1] : "Opens soon"}</span></a>`).join("")}</div></div>
+    </div>
+  </section>`).join("");
+
+  $("chapters").addEventListener("click", e => {
     const b = e.target.closest(".lang button"); if (!b) return;
-    lang = b.dataset.l; $("panel").querySelectorAll(".lang button").forEach(x => x.setAttribute("aria-pressed", x === b));
-    $("flat").src = art(DESIGNS[di], lang);
+    const f = b.closest(".flat"), d = D[+f.dataset.k];
+    f.querySelectorAll("button").forEach(x => x.setAttribute("aria-pressed", x === b));
+    f.querySelector("img").src = art(d, b.dataset.l);
   });
-  const W = [[0,0],[1,0],[3,0],[6,1],[2,0],[4,0],[5,0],[1,1],[6,0],[0,1],[3,1],[2,1],[4,1],[5,1],[6,2],[1,2],[0,2]];
-  $("wall").innerHTML = W.map(([d, n]) => `<a href="#${DESIGNS[d].k}" data-d="${d}" data-n="${n}" class="${DESIGNS[d].tall ? "t" : ""}"><img src="${LB(DESIGNS[d].shots[n])}" alt="${DESIGNS[d].name} design, worn" loading="lazy"></a>`).join("");
-  $("wall").addEventListener("click", e => { const a = e.target.closest("a"); if (!a) return; e.preventDefault(); stop(); pick(+a.dataset.d, true); show(+a.dataset.n); $("look").scrollIntoView({ behavior: "smooth" }); });
-  const h = DESIGNS.findIndex(d => "#" + d.k === location.hash);
-  pick(h < 0 ? 0 : h);
-  if (auto) timer = setInterval(() => { if (document.visibilityState === "visible") show(si + 1); }, 4500);
-  const SIZES = ["S", "M", "L", "XL", "XXL"];
-  const S = {
-    tee: '<path d="M70 30 L100 18 Q120 34 140 18 L170 30 L205 62 L182 88 L165 74 L165 222 L75 222 L75 74 L58 88 L35 62 Z"/><path d="M100 18 Q120 44 140 18"/>',
-    singlet: '<path d="M88 18 Q92 70 72 86 L72 222 L168 222 L168 86 Q148 70 152 18 L138 18 Q130 58 120 58 Q110 58 102 18 Z"/>',
-    hat: '<path d="M52 140 Q52 66 120 62 Q188 66 188 140 Z"/><path d="M40 140 L200 140 Q214 150 200 160 L40 160 Q26 150 40 140 Z"/><circle cx="120" cy="60" r="5"/><path d="M120 66 L120 140" />',
-    hoodie: '<path d="M62 46 Q96 20 120 20 Q144 20 178 46 L212 196 L190 202 L168 104 L168 226 L72 226 L72 104 L50 202 L28 196 Z"/><path d="M96 26 Q90 62 120 70 Q150 62 144 26"/><path d="M96 170 L144 170 L150 206 L90 206 Z"/>',
-    sweat: '<path d="M66 36 L102 22 Q120 36 138 22 L174 36 L212 196 L190 202 L168 100 L168 224 L72 224 L72 100 L50 202 L28 196 Z"/><path d="M102 22 Q120 44 138 22"/><path d="M72 212 L168 212"/>'
-  };
+
   const ITEMS = [
-    { k: "tee", img: "falcon-f", pos: "50% 30%", tag: NEW_LIVE ? "Any of the seven designs" : "Five animals now. Two more soon", name: "OG Tee", sub: "Heavyweight cotton.", price: 250, colours: ["Black", "White"], fits: ["Fitted", "Oversized"], sizes: SIZES },
-    { k: "singlet", img: "masthead-skater", tag: "Casting Tape or Masthead", name: "OG Singlet", sub: "For the Dubai summer.", price: 200, colours: ["Black", "White"], sizes: SIZES },
-    { k: "hoodie", img: "falcon-e", pos: "42% 50%", tag: NEW_LIVE ? "Any of the seven designs" : "Five animals now. Two more soon", name: "OG Hoodie", sub: "Heavyweight fleece.", price: 350, colours: ["Black"], sizes: SIZES },
-    { k: "sweat", img: "masthead-sweater", tag: "Masthead", name: "OG Sweater", sub: "Heavyweight crew neck.", price: 350, colours: ["Black", "White"], sizes: SIZES }
+    { k: "tee", img: "falcon-f", pos: "50% 30%", tag: NEW_LIVE ? "Any of the seven designs" : "Five animals now. Two more soon", sub: "Heavyweight cotton.", colours: "Black or white", fit: "Fitted or oversized" },
+    { k: "hoodie", img: "falcon-e", pos: "42% 50%", tag: NEW_LIVE ? "Any of the seven designs" : "Five animals now. Two more soon", sub: "Heavyweight fleece.", colours: "Black" },
+    { k: "singlet", img: "masthead-skater", tag: "Casting Tape or Masthead", sub: "For the Dubai summer.", colours: "Black or white" },
+    { k: "sweat", img: "masthead-sweater", tag: "Masthead", sub: "Heavyweight crew neck.", colours: "Black or white" }
   ];
-  const chips = (a, cls = "") => a.map(x => `<i class="${cls}">${x}</i>`).join("");
-  document.getElementById("items").innerHTML = ITEMS.map(t => `
+  $("items").innerHTML = ITEMS.map(t => `
     <article class="item">
-      <div class="art"><img src="${LB(t.img)}" style="object-position:${t.pos || "50% 50%"}" alt="${t.name}, worn" loading="lazy"></div>
-      <p class="tagl">${t.tag}</p>
-      <h2>${t.name}<span class="stop">.</span><span class="sub">${t.sub}</span></h2>
-      <dl class="opts">
-        <div><dt>Colour</dt><dd>${chips(t.colours)}</dd></div>
-        ${t.fits ? `<div><dt>Fit</dt><dd>${chips(t.fits, "fit")}</dd></div>` : ""}
-        <div><dt>Size</dt><dd>${chips(t.sizes)}</dd></div>
-      </dl>
-      <div class="buy"><span class="price"><small>AED</small>${t.price}</span>
-        ${PAY[t.k] ? `<a class="btn" href="${PAY[t.k]}" rel="noopener">Pre-order</a>` : `<a class="btn" aria-disabled="true">Opens soon</a>`}</div>
-    </article>`).join("") + `<article class="item note"><p class="label">Good to know</p><h2>Before you order<span class="stop">.</span></h2><p class="nt">Fitted runs true to size, oversized is cut big and boxy. Pre-orders close Wednesday 25 November. Questions? <a href="mailto:hello@likeminds.ae">hello@likeminds.ae</a></p></article>`;
+      <div class="art"><img src="${LB(t.img)}" style="object-position:${t.pos || "50% 50%"}" alt="${G[t.k][0]}, worn" loading="lazy"></div>
+      <p class="label t">${t.tag}</p>
+      <h3>${G[t.k][0]}<span class="stop">.</span><span class="sub">${t.sub}</span></h3>
+      <dl class="opts"><div><dt>Colour</dt><dd>${t.colours}</dd></div>${t.fit ? `<div><dt>Fit</dt><dd>${t.fit}</dd></div>` : ""}<div><dt>Size</dt><dd>S to XXL</dd></div></dl>
+      <div class="pay"><span class="price"><small>AED</small>${G[t.k][1]}</span>${PAY[t.k] ? `<a class="btn" href="${PAY[t.k]}" rel="noopener">Pre-order</a>` : `<a class="btn" aria-disabled="true">Opens soon</a>`}</div>
+    </article>`).join("");
+
+  // Never strand a sentence's first word at the end of a line: bind it to the word after it.
+  const tw = document.createTreeWalker(document.querySelector("main"), NodeFilter.SHOW_TEXT);
+  for (let n; (n = tw.nextNode());) n.nodeValue = n.nodeValue.replace(/([.!?]\s+)(\S+) (?=\S)/g, "$1$2\u00a0");
+  if ("IntersectionObserver" in window) {
+    const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }), { rootMargin: "0px 0px -8% 0px" });
+    document.querySelectorAll(".rv").forEach(el => io.observe(el));
+    const links = [...$("chap").children];
+    const so = new IntersectionObserver(es => es.forEach(e => { if (!e.isIntersecting) return; links.forEach(a => { const on = a.hash === "#" + e.target.id; a.classList.toggle("on", on); if (on) a.parentNode.scrollTo({ left: a.offsetLeft - 60, behavior: "smooth" }); }); }), { rootMargin: "-45% 0px -50% 0px" });
+    document.querySelectorAll(".story").forEach(s => so.observe(s));
+  } else document.querySelectorAll(".rv").forEach(el => el.classList.add("in"));
+  if (location.hash) { const t = document.querySelector(location.hash); if (t) setTimeout(() => t.scrollIntoView(), 50); }
 })();
 </script>
 </body>
